@@ -1,0 +1,42 @@
+button.ui.btn {
+	background: #fff;
+	border-radius: 0.8em;
+	border: 0.1em solid #222;
+	padding: 1em 2em;
+	flex-flow: row nowrap;
+	flex-grow: 1;
+	color: #222;
+}
+
+button.ui.btn:hover {
+	transition: 0.3s ease;
+	color: #000;
+	background-color: #0001;
+	border: 0.1em solid #000;
+}
+
+button.ui.btn:focus {
+	outline: 0;
+}
+
+button.ui.btn.active {
+	background-color: #222;
+	border: 0.1em solid #222;
+	color: #fff;
+	transition: 0.1s ease;
+}
+
+button.ui.btn.active:hover {
+	background-color: #000;
+	border: 0.1em solid #000;
+	color: #ccc;
+}
+
+@media (hover:none) {
+	button.ui.btn.active:hover {
+		background-color: #222;
+		border: 0.1em solid #222;
+		color: #fff;
+		transition: 0.1s ease;
+	}
+}

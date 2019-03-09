@@ -1,0 +1,31 @@
+div.ui.btn-group {
+	float: left;
+	width: 100%;
+	display: flex;
+}
+
+div.ui.btn-group button.ui.btn:not(:last-child) {
+	border-right: none;
+}
+
+div.ui.btn-group button.ui.btn:not(:last-child):not(:first-child) {
+	border-radius: 0;
+}
+
+div.ui.btn-group:after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.btn-group button.ui.btn:first-child {
+	border-radius: 0.4em 0 0 0.4em;
+}
+
+.btn-group button.ui.btn:last-child {
+	border-radius: 0 0.4em 0.4em 0;
+}
+
+.btn-group button.ui.btn:only-child {
+	border-radius: 0.4em;
+}
