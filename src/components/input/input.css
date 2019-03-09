@@ -1,0 +1,18 @@
+input.ui.input {
+	padding: 1em 2em;
+	border-radius: 0.4em;
+	border: 1px solid #222;
+	color: #222;
+	background: #fff;
+	width: 100%;
+	display: flex;
+	box-sizing:border-box
+}
+
+input.ui.input:focus::-webkit-input-placeholder {
+    color: #aaa;
+}
+
+input.ui.input:focus {
+	outline: 0;
+}
