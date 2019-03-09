@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Domine');
+
 body {
   /* disable text higlightening */
   -webkit-touch-callout: none;
@@ -12,11 +14,30 @@ body {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome and Opera */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
+
 
 #root {
   max-width: 600px;
   align-items: center;
   margin: auto;
   padding: 1vw;
+}
+
+.ui {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+::selection {
+  background: #ffb6c1; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #ffb6c1; /* Gecko Browsers */
+}
+
+* {
+  font-family: 'Domine', serif;
 }
