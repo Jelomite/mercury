@@ -1,9 +1,9 @@
 import React, {useContext} from "react";
 import {Button, ButtonGroup, Input, ButtonInput} from "./components";
-import {Context} from "./store";
+import {FormContext} from "./contexts/form";
 
 const App = () => {
-	const {store, dispatch} = useContext(Context);
+	const {store, dispatch} = useContext(FormContext);
 
 	return (
 		<React.Fragment>
@@ -11,9 +11,9 @@ const App = () => {
 			<ButtonGroup>
 				{["1", "2", "3", "4", "5"].map((text, index) => (
 					<Button
-						active={store.active === index}
+						active={store.rating === index}
 						onClick={() => {
-							dispatch({type: "SET_ACTIVE", value: index});
+							dispatch({type: "SET_RATING", value: index});
 						}}
 						key={index}>{text}
 					</Button>
@@ -25,12 +25,13 @@ const App = () => {
 				placeholder="hello"
 				value={store.text}
 				onChange={e => {
-					dispatch({type: "UPDATE_TEXT", value: e.target.value});
+					dispatch({type: "SET_OPINION", value: e.target.value});
 				}}
 			/>
 			<h3> Amount of balls... </h3>
 
 			<ButtonInput
+				value={store.amount}
 				onClick={{
 					right: () => dispatch({type: "INCREMENT"}),
 					left: () => dispatch({type: "DECREMENT"}),
