@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, ButtonGroup, Input} from "./components";
+import {Button, ButtonGroup, Input, ButtonInput} from "./components";
 
 const App = () => {
 	const [active, setActive] = useState("-1");
@@ -12,6 +12,7 @@ const App = () => {
 			</ButtonGroup>
 
 			<Input placeholder="hello"> </Input>
+			<ButtonInput right="+" left="-"/>
 		</React.Fragment>
 	);
 };
