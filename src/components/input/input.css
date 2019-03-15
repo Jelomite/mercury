@@ -6,13 +6,19 @@ input.ui.input {
 	background: #fff;
 	width: 100%;
 	display: flex;
-	box-sizing:border-box
+	box-sizing: border-box
 }
 
 input.ui.input:focus::-webkit-input-placeholder {
-    color: #aaa;
+	color: #aaa;
 }
 
 input.ui.input:focus {
 	outline: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
