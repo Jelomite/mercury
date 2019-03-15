@@ -35,5 +35,6 @@ module.exports = {
 		"object-curly-spacing": 2,
 		"space-infix-ops": 2,
 		"comma-dangle": [1, "always-multiline"],
+		"react/prop-types": [2, {"ignore": ["children"]}],
 	},
 };
