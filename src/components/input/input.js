@@ -14,6 +14,7 @@ const Input = props => (
 			} :
 			{}
 		}
+		{...props}
 	/>
 );
 
