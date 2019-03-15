@@ -27,8 +27,10 @@ const App = () => {
 				}}
 			/>
 			<ButtonInput
-				rightOnClick={() => dispatch({type: "INCREMENT"})}
-				leftOnClick={() => dispatch({type: "DECREMENT"})}
+				onClick={{
+					right: () => dispatch({type: "INCREMENT"}),
+					left: () => dispatch({type: "DECREMENT"}),
+				}}
 			/>
 		</React.Fragment>
 	);

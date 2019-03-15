@@ -12,11 +12,11 @@ const ButtonInput = props => {
 	return (
 		<div className={cx("ui", "btn-input", style)}>
 			<Button
-				onClick={props.leftOnClick}>
+				onClick={props.onClick.left}>
 				{props.left}
 			</Button>
 			<Input type={props.type} value={store.count}/>
-			<Button	onClick={props.rightOnClick}>
+			<Button	onClick={props.onClick.right}>
 				{props.right}
 			</Button>
 		</div>
@@ -27,16 +27,19 @@ ButtonInput.propTypes = {
 	right: PropTypes.string,
 	left: PropTypes.string,
 	type: PropTypes.string,
-	rightOnClick: PropTypes.func,
-	leftOnClick: PropTypes.func,
+	onClick: PropTypes.objectOf(
+		PropTypes.func
+	),
 };
 
 ButtonInput.defaultProps = {
 	right: "+",
 	left: "-",
 	type: "number",
-	rightOnClick: () => null,
-	leftOnClick: () => null,
+	onClick: {
+		right: () => null,
+		left: () => null,
+	},
 };
 
 export default ButtonInput;
