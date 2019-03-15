@@ -6,7 +6,8 @@ input.ui.input {
 	background: #fff;
 	width: 100%;
 	display: flex;
-	box-sizing: border-box
+	box-sizing: border-box;
+	font-size: 1em;
 }
 
 input.ui.input:focus::-webkit-input-placeholder {

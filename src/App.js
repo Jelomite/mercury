@@ -7,6 +7,7 @@ const App = () => {
 
 	return (
 		<React.Fragment>
+			<h3> Rate me! </h3>
 			<ButtonGroup>
 				{["1", "2", "3", "4", "5"].map((text, index) => (
 					<Button
@@ -18,6 +19,7 @@ const App = () => {
 					</Button>
 				))}
 			</ButtonGroup>
+			<h3> Leave a comment </h3>
 
 			<Input
 				placeholder="hello"
@@ -26,6 +28,8 @@ const App = () => {
 					dispatch({type: "UPDATE_TEXT", value: e.target.value});
 				}}
 			/>
+			<h3> Amount of balls... </h3>
+
 			<ButtonInput
 				onClick={{
 					right: () => dispatch({type: "INCREMENT"}),
