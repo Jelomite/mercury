@@ -1,0 +1,31 @@
+div.ui.btn-input {
+	display: flex;
+}
+
+div.ui.btn-input input.ui.input:not(:last-child) {
+	border-right: none;
+}
+
+div.ui.btn-input button.ui.btn:not(:last-child) {
+	border-right: none;
+}
+
+div.ui.btn-input button.ui.btn:first-child {
+	border-radius: 0.4em 0 0 0.4em;
+}
+
+div.ui.btn-input button.ui.btn:last-child {
+	border-radius: 0 0.4em 0.4em 0;
+}
+
+div.ui.btn-input input.ui.input:not(:last-child):not(:first-child) {
+	border-radius: 0;
+}
+
+div.ui.btn-input button.ui.btn {
+	flex: 1;
+}
+
+div.ui.btn-input input.ui.input {
+	flex: 3;
+}
