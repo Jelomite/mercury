@@ -23,4 +23,9 @@ Input.propTypes = {
 	type: PropTypes.string,
 };
 
+Input.defaultProps = {
+	placeholder: "",
+	type: "text",
+};
+
 export default Input;
