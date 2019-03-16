@@ -1,23 +1,16 @@
 import React from "react";
 import blueprint from "./blueprint.json";
 import * as Question from "./components";
+import generateContext from "./generate-context";
 
-const initialState = {...blueprint};
-const questionHash = (section, index) => `${index}#${section}`;
-const reducer = (state, action) => {
-	const [index, section] = action.type.split("#");
-	state[section][index].value = action.value;
-	return {...state};
-};
-const GeneratedFormContext = React.createContext(initialState);
-const GeneratedFormContextProvider = props => {
-	const [store, dispatch] = React.useReducer(reducer, initialState);
-	return (
-		<GeneratedFormContext.Provider value={{store, dispatch}}>
-			{props.children}
-		</GeneratedFormContext.Provider>
-	);
-};
+const [FormContext, provideComponent] = generateContext({
+	initialState: {...blueprint},
+	reducer: (state, action) => {
+		const [index, section] = action.type.split("#");
+		state[section][index].value = action.value;
+		return {...state};
+	},
+});
 
 const questionGen = (question, section, index, {store, dispatch}) => {
 	switch (question.type) {
@@ -25,25 +18,25 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 		return <Question.Enum
 			options={question.options}
 			active={store[section][index].value}
-			onClick={value => dispatch({type: questionHash(section, index), value})}
+			onClick={value => dispatch({type: `${index}#${section}`, value})}
 		/>;
 	case "boolean":
 		return <Question.Enum
 			active={store[section][index].value}
-			onClick={value => dispatch({type: questionHash(section, index), value})}
+			onClick={value => dispatch({type: `${index}#${section}`, value})}
 		/>;
 	case "number":
 		return <Question.Number
 			value={store[section][index].value}
 			onClick={{
-				right: () => dispatch({type: questionHash(section, index), value: store[section][index].value + 1}),
-				left: () => dispatch({type: questionHash(section, index), value: Math.max(store[section][index].value - 1, 0)}),
+				right: () => dispatch({type: `${index}#${section}`, value: store[section][index].value + 1}),
+				left: () => dispatch({type: `${index}#${section}`, value: Math.max(store[section][index].value - 1, 0)}),
 			}}
 		/>;
 	case "text":
 		return <Question.Input
 			value={store[section][index].value}
-			onChange={e => dispatch({type: questionHash(section, index), value: e.target.value})}
+			onChange={e => dispatch({type: `${index}#${section}`, value: e.target.value})}
 		/>;
 	default:
 		return null;
@@ -51,7 +44,7 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 };
 
 const Form = () => {
-	const {store, dispatch} = React.useContext(GeneratedFormContext);
+	const {store, dispatch} = React.useContext(FormContext);
 	return (
 		<div className="form">
 			{Object.entries(blueprint).map((section, sectionIndex) => (
@@ -70,8 +63,4 @@ const Form = () => {
 
 };
 
-const ProvidedForm = () => (
-	<GeneratedFormContextProvider><Form /></GeneratedFormContextProvider>
-);
-
-export default ProvidedForm;
+export default provideComponent(Form);
