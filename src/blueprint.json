@@ -1,0 +1,176 @@
+{
+	"start": [{
+			"name": "Started With",
+			"type": "enum",
+			"options": [
+				"Hatch",
+				"Cargo",
+				"None"
+			],
+			"value": -1
+		},
+		{
+			"name": "Started At",
+			"type": "enum",
+			"options": [
+				"Level 1",
+				"Level 2"
+			],
+			"value": -1
+		}
+	],
+	"sandstorm": [{
+			"name": "Crossed Hub Line?",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Cargo Collected",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Cargo Dropped",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Puts Cargo To Low",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Cargo To Center",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Cargo To High",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Hatch Collected",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Hatch Dropped",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Puts Hatch To Low",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Hatch To Center",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Hatch To High",
+			"type": "boolean",
+			"value": -1
+		}
+	],
+	"teleop": [{
+			"name": "Cargo Collected",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Cargo Dropped",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Puts Cargo To Low",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Cargo To Center",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Cargo To High",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Hatch Collected",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Hatch Dropped",
+			"type": "number",
+			"value": 0
+		},
+		{
+			"name": "Puts Hatch To Low",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Hatch To Center",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Puts Hatch To High",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Played Defensively?",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Robot Broke?",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Comments",
+			"type": "text",
+			"value": ""
+		}
+	],
+	"endgame": [{
+		"name": "Climbed?",
+		"type": "enum",
+		"options": [
+			"No",
+			"Level 1",
+			"Level 2",
+			"Level 3"
+		],
+    "value": -1
+	}],
+	"general": [{
+			"name": "Robot Broke?",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "What did brake?",
+			"type": "text",
+			"value": ""
+		},
+		{
+			"name": "Red or Yellow Card?",
+			"type": "boolean",
+			"value": -1
+		},
+		{
+			"name": "Comments",
+			"type": "text",
+			"value": ""
+		}
+	]
+}
