@@ -1,7 +1,9 @@
 import React from "react";
-import * as Question from "./components";
-import blueprint from "./blueprint.json";
-import {FormContext} from "./contexts/form";
+import cx from "classnames";
+import * as Question from "../components";
+import blueprint from "../blueprint.json";
+import {FormContext} from "../contexts/form";
+import style from "./form.css";
 
 const questionGen = (question, section, index, {store, dispatch}) => {
 	switch (question.type) {
@@ -37,9 +39,9 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 const Form = () => {
 	const {store, dispatch} = React.useContext(FormContext);
 	return (
-		<div className="form">
+		<div className={cx("form", style)}>
 			{Object.entries(blueprint).map((section, sectionIndex) => (
-				<div className="section" key={sectionIndex}>
+				<section className={cx("section", style)} key={sectionIndex}>
 					<h2>{section[0]}</h2>
 					{section[1].map((question, questionIndex) => (
 						<div className="question" key={questionIndex}>
@@ -47,7 +49,7 @@ const Form = () => {
 							{questionGen(question, section[0], questionIndex, {store, dispatch})}
 						</div>
 					))}
-				</div>
+				</section>
 			))}
 		</div>
 	);

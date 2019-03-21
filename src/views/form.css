@@ -1,0 +1,14 @@
+@media (max-width: 600px){
+	div.form {
+	  overflow: scroll;
+	  height: 100vh;
+	  scroll-snap-type: y mandatory;
+	  scroll-padding: 0 0 30vh 0;
+	}
+
+	section.section {
+	  margin-bottom: 130vh;
+	  scroll-snap-align: start;
+	  scroll-snap-type: y mandatory;
+	}
+}
