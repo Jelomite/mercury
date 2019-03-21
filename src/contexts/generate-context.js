@@ -14,6 +14,7 @@ const generateContext = ({initialState = {}, reducer}) => {
 		return wrapper;
 	};
 	return [Context, provideComponent];
+
 };
 
 export default generateContext;
