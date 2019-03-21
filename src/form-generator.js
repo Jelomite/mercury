@@ -1,16 +1,7 @@
 import React from "react";
-import blueprint from "./blueprint.json";
 import * as Question from "./components";
-import generateContext from "./generate-context";
-
-const [FormContext, provideComponent] = generateContext({
-	initialState: {...blueprint},
-	reducer: (state, action) => {
-		const [index, section] = action.type.split("#");
-		state[section][index].value = action.value;
-		return {...state};
-	},
-});
+import blueprint from "./blueprint.json";
+import {FormContext} from "./contexts/form";
 
 const questionGen = (question, section, index, {store, dispatch}) => {
 	switch (question.type) {
@@ -63,4 +54,4 @@ const Form = () => {
 
 };
 
-export default provideComponent(Form);
+export default Form;

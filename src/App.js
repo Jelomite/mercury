@@ -1,3 +1,4 @@
 import Form from "./form-generator";
+import {provideComponent} from "./contexts/form";
 
-export default Form;
+export default provideComponent(Form);
