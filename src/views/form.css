@@ -1,4 +1,4 @@
-@media (max-width: 600px){
+/* @media (max-width: 600px){
 	div.form {
 	  overflow: scroll;
 	  height: 100vh;
@@ -11,4 +11,53 @@
 	  scroll-snap-align: start;
 	  scroll-snap-type: y mandatory;
 	}
+} */
+h5 {
+	font-size: 0.8em;
+	text-align: center;
+	color: #222;
+	padding: 0.3em 0;
+	margin-top: 0;
+}
+
+h4 {
+	font-size: 1em;
+	text-align: center;
+	color: #222;
+	padding: 1em 0 0.3em 0;
+}
+
+h2 {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+section.section {
+	padding: 0 0 10% 0;
+}
+
+hr.divider {
+	margin-bottom: 3.5em;
+}
+
+div.double {
+	display: flex;
+	margin-top: 0;
+}
+
+section.right {
+	width: 48%;
+	margin: 0 1em 0 0;
+}
+
+section.left {
+	width: 48%;
+	margin: 0 0 0 1em;
+}
+
+.seperator {
+	background-color: #222;
+	width: 0px;
+	margin-top: 1.8em;
+	padding: 0.5px;
 }
