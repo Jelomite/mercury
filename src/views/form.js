@@ -76,7 +76,7 @@ const Double = props => {
 			<section className="seperator" />
 			<section className="left">
 				{
-					store[section][index].options.right.map((question, questionIndex) => {
+					store[section][index].options.left.map((question, questionIndex) => {
 						return (
 							<React.Fragment key={questionIndex}>
 								<h5>{question.name}</h5>
@@ -158,7 +158,7 @@ const Form = () => {
 						<h2>{section[0]}</h2>
 						{section[1].map((question, questionIndex) => (
 							<div className="question" key={questionIndex}>
-								<h4>{question.name}</h4>
+								<h4>{question.name} {question.type === "multiple" ? <span className="gray">(M)</span> : ""}</h4>
 								{questionGen(question, section[0], questionIndex, {store, dispatch})}
 							</div>
 						))}
