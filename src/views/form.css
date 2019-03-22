@@ -40,7 +40,7 @@ hr.divider {
 	margin-bottom: 3.5em;
 	border: none;
 	background-color: #222;
-	height: 0.05em;
+	height: 1px;
 }
 
 div.double {
