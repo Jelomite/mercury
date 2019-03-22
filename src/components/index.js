@@ -31,9 +31,40 @@ Enum.defaultProps = {
 	onClick: () => null,
 };
 
+const MultipleChoice = props => (
+	<ButtonGroup>
+		{
+			props.options.map((text, index) => (
+				<Button
+					active={props.active[index]}
+					key={index}
+					onClick={() => props.onClick(index)}
+				>
+					{text}
+				</Button>
+			))
+		}
+	</ButtonGroup>
+);
+
+MultipleChoice.propTypes = {
+	options: PropTypes.arrayOf(
+		PropTypes.string,
+	),
+	active: PropTypes.arrayOf(
+		PropTypes.bool
+	),
+	onClick: PropTypes.func,
+};
+
+MultipleChoice.defaultProps = {
+	onClick: () => null,
+};
+
 export {
 	Enum,
 	Button,
 	Input,
 	ButtonInput as Number,
+	MultipleChoice,
 };

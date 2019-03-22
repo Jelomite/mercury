@@ -21,14 +21,32 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 		return <Question.Number
 			value={store[section][index].value}
 			onClick={{
-				right: () => dispatch({type: "regular", path: `${index}#${section}`, value: store[section][index].value + 1}),
-				left: () => dispatch({type: "regular", path: `${index}#${section}`, value: Math.max(store[section][index].value - 1, 0)}),
+				right: () => dispatch({
+					type: "regular",
+					path: `${index}#${section}`,
+					value: store[section][index].value + 1,
+				}),
+				left: () => dispatch({
+					type: "regular",
+					path: `${index}#${section}`,
+					value: Math.max(store[section][index].value - 1, 0),
+				}),
 			}}
 		/>;
 	case "text":
 		return <Question.Input
 			value={store[section][index].value}
 			onChange={e => dispatch({type: "regular", path: `${index}#${section}`, value: e.target.value})}
+		/>;
+	case "multiple":
+		return <Question.MultipleChoice
+			options={question.options}
+			active={store[section][index].value}
+			onClick={target => dispatch({
+				type: "regular",
+				path: `${index}#${section}`,
+				value: Object.assign([], store[section][index].value, {[target]: !store[section][index].value[target]}),
+			})}
 		/>;
 	case "double":
 		return (
@@ -73,6 +91,8 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 										/>
 									</React.Fragment>
 								);
+							default:
+								return null;
 							}
 						}
 						)
@@ -119,6 +139,8 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 										/>
 									</React.Fragment>
 								);
+							default:
+								return null;
 							}
 						}
 						)
