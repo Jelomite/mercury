@@ -5,7 +5,6 @@ import style from "./input.css";
 
 const Input = props => (
 	<input
-		disabled
 		className={cx("ui", "input", style)}
 		placeholder={props.placeholder}
 		type={props.type}

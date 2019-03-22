@@ -12,7 +12,7 @@ const ButtonInput = props => {
 				onClick={props.onClick.left}>
 				{props.left}
 			</Button>
-			<Input type={props.type} value={props.value}/>
+			<Input disabled type={props.type} value={props.value}/>
 			<Button	onClick={props.onClick.right}>
 				{props.right}
 			</Button>
