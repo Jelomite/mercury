@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Domine');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
   /* disable text higlightening */
@@ -39,10 +39,14 @@ body {
 }
 
 * {
-  font-family: 'Domine', serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h6{
   margin-top: 1em;
+  margin-bottom: 0.1em;
+}
+
+h5 {
   margin-bottom: 0.1em;
 }
