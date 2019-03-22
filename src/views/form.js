@@ -1,8 +1,101 @@
 import React from "react";
 import cx from "classnames";
+import PropTypes from "prop-types";
 import * as Question from "../components";
 import {FormContext} from "../contexts/form";
 import style from "./form.css";
+
+const Double = props => {
+	const {section, index} = props;
+	const {store, dispatch} = React.useContext(FormContext);
+
+	const QuestionType = props => {
+		const {question, questionIndex} = props;
+		switch(question.type) {
+		case "enum":
+			return (
+				<Question.Enum
+					options={question.options}
+					active={store[section][index].options[props.side][questionIndex].value}
+					onClick={value => dispatch({
+						type: "nested",
+						path: `${index}#${section}#${props.side}#${questionIndex}`,
+						value,
+					})}
+				/>
+			);
+		case "number":
+			return (
+				<Question.Number
+					options={question.options}
+					value={store[section][index].options[props.side][questionIndex].value}
+					onClick={{
+						right: () => dispatch({
+							type: "nested",
+							path: `${index}#${section}#${props.side}#${questionIndex}`,
+							value: store[section][index].options[props.side][questionIndex].value + 1}),
+						left: () => dispatch({
+							type: "nested",
+							path: `${index}#${section}#${props.side}#${questionIndex}`,
+							value: Math.max(store[section][index].options[props.side][questionIndex].value - 1, 0),
+						}),
+					}}
+				/>
+			);
+		default:
+			return null;
+		}
+	};
+
+	QuestionType.propTypes = {
+		side: PropTypes.string,
+		question: PropTypes.objectOf(
+			PropTypes.number,
+			PropTypes.string,
+			PropTypes.func,
+		),
+		questionIndex: PropTypes.number,
+	};
+
+	return (
+		<div className="double">
+			<section className="right">
+				{
+					store[section][index].options.right.map((question, questionIndex) => {
+						return (
+							<React.Fragment key={questionIndex}>
+								<h5>{question.name}</h5>
+								<QuestionType
+									side="right"
+									question={question}
+									questionIndex={questionIndex}/>
+							</React.Fragment>
+						);})
+				}
+			</section>
+			<section className="seperator" />
+			<section className="left">
+				{
+					store[section][index].options.right.map((question, questionIndex) => {
+						return (
+							<React.Fragment key={questionIndex}>
+								<h5>{question.name}</h5>
+								<QuestionType
+									side="left"
+									question={question}
+									questionIndex={questionIndex}/>
+							</React.Fragment>
+						);})
+				}
+			</section>
+		</div>
+	);
+};
+
+Double.propTypes = {
+	index: PropTypes.number,
+	section: PropTypes.string,
+};
 
 const questionGen = (question, section, index, {store, dispatch}) => {
 	switch (question.type) {
@@ -49,105 +142,7 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 			})}
 		/>;
 	case "double":
-		return (
-			<div className="double">
-				<section className="right">
-					{
-						store[section][index].options.right.map((innerQuestion, innerIndex) => {
-							switch (innerQuestion.type) {
-							case "enum":
-								return (
-									<React.Fragment>
-										<h5>{innerQuestion.name}</h5>
-										<Question.Enum
-											options={innerQuestion.options}
-											active={store[section][index].options.right[innerIndex].value}
-											onClick={value => dispatch({
-												type: "nested",
-												path: `${index}#${section}#right#${innerIndex}`,
-												value,
-											})}
-										/>
-									</React.Fragment>
-								);
-							case "number":
-								return (
-									<React.Fragment>
-										<h5>{innerQuestion.name}</h5>
-										<Question.Number
-											options={innerQuestion.options}
-											value={store[section][index].options.right[innerIndex].value}
-											onClick={{
-												right: () => dispatch({
-													type: "nested",
-													path: `${index}#${section}#right#${innerIndex}`,
-													value: store[section][index].options.right[innerIndex].value + 1}),
-												left: () => dispatch({
-													type: "nested",
-													path: `${index}#${section}#right#${innerIndex}`,
-													value: Math.max(store[section][index].options.right[innerIndex].value - 1, 0),
-												}),
-											}}
-										/>
-									</React.Fragment>
-								);
-							default:
-								return null;
-							}
-						}
-						)
-					}
-				</section>
-				<section className="seperator"/>
-				<section className="left">
-					{
-						store[section][index].options.left.map((innerQuestion, innerIndex) => {
-							switch (innerQuestion.type) {
-							case "enum":
-								return (
-									<React.Fragment>
-										<h5>{innerQuestion.name}</h5>
-										<Question.Enum
-											options={innerQuestion.options}
-											active={store[section][index].options.left[innerIndex].value}
-											onClick={value => dispatch({
-												type: "nested",
-												path: `${index}#${section}#left#${innerIndex}`,
-												value,
-											})}
-										/>
-									</React.Fragment>
-								);
-							case "number":
-								return (
-									<React.Fragment>
-										<h5>{innerQuestion.name}</h5>
-										<Question.Number
-											options={innerQuestion.options}
-											value={store[section][index].options.left[innerIndex].value}
-											onClick={{
-												right: () => dispatch({
-													type: "nested",
-													path: `${index}#${section}#left#${innerIndex}`,
-													value: store[section][index].options.left[innerIndex].value + 1}),
-												left: () => dispatch({
-													type: "nested",
-													path: `${index}#${section}#left#${innerIndex}`,
-													value: Math.max(store[section][index].options.left[innerIndex].value - 1, 0),
-												}),
-											}}
-										/>
-									</React.Fragment>
-								);
-							default:
-								return null;
-							}
-						}
-						)
-					}
-				</section>
-			</div>
-		);
+		return <Double section={section} index={index}/>;
 	default:
 		return null;
 	}
