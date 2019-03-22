@@ -38,6 +38,9 @@ section.section {
 
 hr.divider {
 	margin-bottom: 3.5em;
+	border: none;
+	background-color: #222;
+	height: 0.05em;
 }
 
 div.double {
@@ -58,6 +61,6 @@ section.left {
 .seperator {
 	background-color: #222;
 	width: 0px;
-	margin-top: 1.8em;
+	margin-top: 1.2em;
 	padding: 0.5px;
 }
