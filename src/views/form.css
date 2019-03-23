@@ -11,6 +11,10 @@
 	  scroll-snap-align: start;
 	  scroll-snap-type: y mandatory;
 	}
+
+	body {
+		overflow: hidden;
+	}
 }
 h5 {
 	font-size: 0.8em;
