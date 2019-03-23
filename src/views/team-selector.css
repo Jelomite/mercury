@@ -1,0 +1,15 @@
+.container {
+	width: 70%;
+	margin: auto;
+	padding-bottom: 1em;
+}
+
+h1, h4 {
+	text-align: center;
+	margin-top: 0.1em;
+	padding: 0;
+}
+
+h4.team {
+	margin-top: 0
+}
