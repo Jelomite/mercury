@@ -3,6 +3,7 @@ import cx from "classnames";
 import PropTypes from "prop-types";
 import * as Question from "../components";
 import {FormContext} from "../contexts/form";
+import {MatchContext} from "../contexts/match";
 import style from "./form.css";
 
 const Double = props => {
@@ -15,6 +16,7 @@ const Double = props => {
 		case "enum":
 			return (
 				<Question.Enum
+					color={props.color}
 					options={question.options}
 					active={store[section][index].options[props.side][questionIndex].value}
 					onClick={value => dispatch({
@@ -27,6 +29,7 @@ const Double = props => {
 		case "number":
 			return (
 				<Question.Number
+					color={props.color}
 					options={question.options}
 					value={store[section][index].options[props.side][questionIndex].value}
 					onClick={{
@@ -55,6 +58,7 @@ const Double = props => {
 			PropTypes.func,
 		),
 		questionIndex: PropTypes.number,
+		color: PropTypes.string,
 	};
 
 	return (
@@ -66,6 +70,7 @@ const Double = props => {
 							<React.Fragment key={questionIndex}>
 								<h5>{question.name}</h5>
 								<QuestionType
+									color={props.color}
 									side="right"
 									question={question}
 									questionIndex={questionIndex}/>
@@ -81,6 +86,7 @@ const Double = props => {
 							<React.Fragment key={questionIndex}>
 								<h5>{question.name}</h5>
 								<QuestionType
+									color={props.color}
 									side="left"
 									question={question}
 									questionIndex={questionIndex}/>
@@ -95,18 +101,21 @@ const Double = props => {
 Double.propTypes = {
 	index: PropTypes.number,
 	section: PropTypes.string,
+	color: PropTypes.string,
 };
 
-const questionGen = (question, section, index, {store, dispatch}) => {
+const questionGen = (question, section, index, {store, dispatch}, color) => {
 	switch (question.type) {
 	case "enum":
 		return <Question.Enum
+			color={color}
 			options={question.options}
 			active={store[section][index].value}
 			onClick={value => dispatch({type: "regular", path: `${index}#${section}`, value})}
 		/>;
 	case "boolean":
 		return <Question.Enum
+			color={color}
 			active={store[section][index].value}
 			onClick={value => dispatch({type: "regular", path: `${index}#${section}`, value})}
 		/>;
@@ -133,6 +142,7 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 		/>;
 	case "multiple":
 		return <Question.MultipleChoice
+			color={color}
 			options={question.options}
 			active={store[section][index].value}
 			onClick={target => dispatch({
@@ -142,7 +152,7 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 			})}
 		/>;
 	case "double":
-		return <Double section={section} index={index}/>;
+		return <Double color={color} section={section} index={index}/>;
 	default:
 		return null;
 	}
@@ -150,6 +160,7 @@ const questionGen = (question, section, index, {store, dispatch}) => {
 
 const Form = () => {
 	const {store, dispatch} = React.useContext(FormContext);
+	const {store: matchStore} = React.useContext(MatchContext);
 	return (
 		<div className={cx("form", style)}>
 			{Object.entries(store).map((section, sectionIndex) => (
@@ -159,7 +170,7 @@ const Form = () => {
 						{section[1].map((question, questionIndex) => (
 							<div className="question" key={questionIndex}>
 								<h4>{question.name} {question.type === "multiple" ? <span className="gray">(M)</span> : ""}</h4>
-								{questionGen(question, section[0], questionIndex, {store, dispatch})}
+								{questionGen(question, section[0], questionIndex, {store, dispatch}, matchStore.alliance)}
 							</div>
 						))}
 					</section>
