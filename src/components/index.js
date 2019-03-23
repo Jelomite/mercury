@@ -10,6 +10,7 @@ const Enum = props => (
 				active={props.active === index}
 				key={index}
 				onClick={() => props.onClick(index)}
+				color={props.color}
 			>
 				{text}
 			</Button>
@@ -23,6 +24,7 @@ Enum.propTypes = {
 	),
 	active: PropTypes.number,
 	onClick: PropTypes.func,
+	color: PropTypes.string,
 };
 
 Enum.defaultProps = {
@@ -39,6 +41,7 @@ const MultipleChoice = props => (
 					active={props.active[index]}
 					key={index}
 					onClick={() => props.onClick(index)}
+					color={props.color}
 				>
 					{text}
 				</Button>
@@ -55,6 +58,7 @@ MultipleChoice.propTypes = {
 		PropTypes.bool
 	),
 	onClick: PropTypes.func,
+	color: PropTypes.string,
 };
 
 MultipleChoice.defaultProps = {
@@ -64,6 +68,7 @@ MultipleChoice.defaultProps = {
 export {
 	Enum,
 	Button,
+	ButtonGroup,
 	Input,
 	ButtonInput as Number,
 	MultipleChoice,

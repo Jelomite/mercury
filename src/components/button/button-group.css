@@ -13,6 +13,10 @@ div.ui.btn-group button.ui.btn:not(:last-child):not(:first-child) {
 	border-radius: 0;
 }
 
+div.ui.btn-group button.ui.btn {
+	flex: 1;
+}
+
 div.ui.btn-group:after {
 	content: "";
 	clear: both;
