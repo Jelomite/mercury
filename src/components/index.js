@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Button, ButtonGroup} from "./button/";
 import {Input, ButtonInput} from "./input/";
+import {DoubleNumber} from "./double";
 
 const Enum = props => (
 	<ButtonGroup>
@@ -72,4 +73,5 @@ export {
 	Input,
 	ButtonInput as Number,
 	MultipleChoice,
+	DoubleNumber,
 };
