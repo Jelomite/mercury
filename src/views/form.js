@@ -5,6 +5,7 @@ import {FormContext} from "../contexts/form";
 import {MatchContext} from "../contexts/match";
 import style from "./form.css";
 
+// this function generates a serve-ready component with everything in place.
 const questionGen = (question, section, index, {store, dispatch}, color) => {
 	switch (question.type) {
 	case "enum":
@@ -49,6 +50,9 @@ const questionGen = (question, section, index, {store, dispatch}, color) => {
 			onClick={target => dispatch({
 				type: "regular",
 				path: `${index}#${section}`,
+				// the value should be an array of booleans. i.e. [true, false, false].
+				// here we create a new array which merges the previous state with the toggle of the clicked button.
+				// example - we had [true, false, false] and we clicked the last button (index of 2), so we get a new array which containes [true, false, true].
 				value: Object.assign([], store[section][index].value, {[target]: !store[section][index].value[target]}),
 			})}
 		/>;
@@ -64,6 +68,7 @@ const questionGen = (question, section, index, {store, dispatch}, color) => {
 					left: () => dispatch({
 						type: "nested",
 						path: `${index}#${section}#right#${questionIndex}`,
+						// set the value's lower boundry to 0.
 						value: Math.max(store[section][index].options.right[questionIndex].value - 1, 0),
 					}),
 				}}
@@ -78,6 +83,7 @@ const questionGen = (question, section, index, {store, dispatch}, color) => {
 					left: () => dispatch({
 						type: "nested",
 						path: `${index}#${section}#left#${questionIndex}`,
+						// set the value's lower boundry to 0.
 						value: Math.max(store[section][index].options.left[questionIndex].value - 1, 0),
 					}),
 				}}

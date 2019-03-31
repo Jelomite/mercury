@@ -24,9 +24,10 @@ ButtonInput.propTypes = {
 	right: PropTypes.string,
 	left: PropTypes.string,
 	type: PropTypes.string,
-	onClick: PropTypes.objectOf(
-		PropTypes.func
-	),
+	onClick: PropTypes.shape({
+		right: PropTypes.func,
+		left: PropTypes.func,
+	}),
 	value: PropTypes.string,
 };
 

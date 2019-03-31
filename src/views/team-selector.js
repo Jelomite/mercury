@@ -6,6 +6,7 @@ import {MatchContext} from "../contexts/match";
 import style from "./team-selector.css";
 import * as TBA from "../TBA";
 
+// parse the matchKey to readable format. this will later be stored in the store.match
 const parseMatch = matchKey => {
 	const tokens = matchKey.split(/\d+/);
 	const parsedTokens = tokens.map(token => {
@@ -32,6 +33,8 @@ const Table = props => {
 	React.useEffect(() => {
 		//TODO: this matchKey shouldn't be hardcoded.
 		TBA.fetchSingleMatchFromEvent(props.match).then(r => {
+			// setting initial state of MatchContext.
+			dispatch({type: "SET_MATCHKEY", value: props.match});
 			dispatch({type: "SET_BLUE", value: r.alliances.blue.team_keys.map(team => team.replace("frc", ""))});
 			dispatch({type: "SET_RED", value: r.alliances.red.team_keys.map(team => team.replace("frc", ""))});
 			dispatch({type: "SET_MATCH", value: parseMatch(props.match.split("_")[1])});
@@ -42,7 +45,8 @@ const Table = props => {
 			<h1>{store.match}</h1>
 			<div className={cx("container", style)}>
 				{
-					store.teamID !== -1 ? (
+					// display the selection component. if the client chose a team, display its ID instead.
+					store.teamID !== -1 ? ( // -1 is the defualt value of the ID.
 						<h4 className="team">Team #{store.teamID}</h4>
 					) : (
 						<React.Fragment>

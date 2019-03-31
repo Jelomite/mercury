@@ -5,6 +5,7 @@ import {ButtonInput} from "../input";
 import style from "./double-number.css";
 
 const Double = props => (
+	// this component creates a split screen ButtonInput with a seperator in the middle.
 	<div className={cx("double", style)}>
 		<section className="left">
 			{props.left.map((question, index) => (
@@ -34,10 +35,24 @@ const Double = props => (
 
 Double.propTypes = {
 	right: PropTypes.arrayOf(
-		PropTypes.object
+		PropTypes.shape({
+			name: PropTypes.string,
+			value: PropTypes.number,
+			onClick: PropTypes.shape({
+				right: PropTypes.func,
+				left: PropTypes.func,
+			}),
+		})
 	),
 	left: PropTypes.arrayOf(
-		PropTypes.object
+		PropTypes.shape({
+			name: PropTypes.string,
+			value: PropTypes.number,
+			onClick: PropTypes.shape({
+				right: PropTypes.func,
+				left: PropTypes.func,
+			}),
+		})
 	),
 };
 

@@ -6,11 +6,12 @@ import style from "./button-group.css";
 const Group = props => (
 	<div
 		className={cx("ui", "btn-group", style)}>
-		{props.color ? (
-			props.children.map(child => React.cloneElement(child, {color: props.color}))
-		) : (
-			props.children
-		)}
+		{	// set the color prop for all children if props.color is present
+			props.color ? (
+				props.children.map(child => React.cloneElement(child, {color: props.color}))
+			) : (
+				props.children
+			)}
 	</div>
 );
 
