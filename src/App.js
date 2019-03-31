@@ -1,14 +1,7 @@
 import React from "react";
-import Form from "./views/form";
-import Table from "./views/team-selector";
-import {provideComponent} from "./contexts/form";
-import {provideMatch} from "./contexts/match";
+import ScoutingForm from "./pages/scouting-form";
 
 const App = () => (
-	<React.Fragment>
-		<Table />
-		<Form />
-	</React.Fragment>
+	<ScoutingForm match="2019isde3_sf2m1" />
 );
-
-export default provideComponent(provideMatch(App));
+export default App;
