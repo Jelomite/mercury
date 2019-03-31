@@ -16,6 +16,7 @@ body {
   /* Non-prefixed version, currently supported by Chrome and Opera */
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
+  padding: 1vh 1vw;
 }
 
 
@@ -23,7 +24,7 @@ body {
   max-width: 600px;
   align-items: center;
   margin: auto;
-  padding: 1vw;
+  padding: 1vh;
 }
 
 #root > .ui {
