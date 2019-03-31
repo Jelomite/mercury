@@ -1,108 +1,9 @@
 import React from "react";
 import cx from "classnames";
-import PropTypes from "prop-types";
 import * as Question from "../components";
 import {FormContext} from "../contexts/form";
 import {MatchContext} from "../contexts/match";
 import style from "./form.css";
-
-const Double = props => {
-	const {section, index} = props;
-	const {store, dispatch} = React.useContext(FormContext);
-
-	const QuestionType = props => {
-		const {question, questionIndex} = props;
-		switch(question.type) {
-		case "enum":
-			return (
-				<Question.Enum
-					color={props.color}
-					options={question.options}
-					active={store[section][index].options[props.side][questionIndex].value}
-					onClick={value => dispatch({
-						type: "nested",
-						path: `${index}#${section}#${props.side}#${questionIndex}`,
-						value,
-					})}
-				/>
-			);
-		case "number":
-			return (
-				<Question.Number
-					color={props.color}
-					options={question.options}
-					value={store[section][index].options[props.side][questionIndex].value}
-					onClick={{
-						right: () => dispatch({
-							type: "nested",
-							path: `${index}#${section}#${props.side}#${questionIndex}`,
-							value: store[section][index].options[props.side][questionIndex].value + 1}),
-						left: () => dispatch({
-							type: "nested",
-							path: `${index}#${section}#${props.side}#${questionIndex}`,
-							value: Math.max(store[section][index].options[props.side][questionIndex].value - 1, 0),
-						}),
-					}}
-				/>
-			);
-		default:
-			return null;
-		}
-	};
-
-	QuestionType.propTypes = {
-		side: PropTypes.string,
-		question: PropTypes.objectOf(
-			PropTypes.number,
-			PropTypes.string,
-			PropTypes.func,
-		),
-		questionIndex: PropTypes.number,
-		color: PropTypes.string,
-	};
-
-	return (
-		<div className="double">
-			<section className="right">
-				{
-					store[section][index].options.right.map((question, questionIndex) => {
-						return (
-							<React.Fragment key={questionIndex}>
-								<h5>{question.name}</h5>
-								<QuestionType
-									color={props.color}
-									side="right"
-									question={question}
-									questionIndex={questionIndex}/>
-							</React.Fragment>
-						);})
-				}
-			</section>
-			<section className="seperator" />
-			<section className="left">
-				{
-					store[section][index].options.left.map((question, questionIndex) => {
-						return (
-							<React.Fragment key={questionIndex}>
-								<h5>{question.name}</h5>
-								<QuestionType
-									color={props.color}
-									side="left"
-									question={question}
-									questionIndex={questionIndex}/>
-							</React.Fragment>
-						);})
-				}
-			</section>
-		</div>
-	);
-};
-
-Double.propTypes = {
-	index: PropTypes.number,
-	section: PropTypes.string,
-	color: PropTypes.string,
-};
 
 const questionGen = (question, section, index, {store, dispatch}, color) => {
 	switch (question.type) {
@@ -152,7 +53,35 @@ const questionGen = (question, section, index, {store, dispatch}, color) => {
 			})}
 		/>;
 	case "double":
-		return <Double color={color} section={section} index={index}/>;
+		return <Question.DoubleNumber
+			right={store[section][index].options.right.map((question, questionIndex) => (
+				{...question, onClick: {
+					right: () => dispatch({
+						type: "nested",
+						path: `${index}#${section}#right#${questionIndex}`,
+						value: store[section][index].options.right[questionIndex].value + 1,
+					}),
+					left: () => dispatch({
+						type: "nested",
+						path: `${index}#${section}#right#${questionIndex}`,
+						value: Math.max(store[section][index].options.right[questionIndex].value - 1, 0),
+					}),
+				}}
+			))}
+			left={store[section][index].options.left.map((question, questionIndex) => (
+				{...question, onClick: {
+					right: () => dispatch({
+						type: "nested",
+						path: `${index}#${section}#left#${questionIndex}`,
+						value: store[section][index].options.left[questionIndex].value + 1,
+					}),
+					left: () => dispatch({
+						type: "nested",
+						path: `${index}#${section}#left#${questionIndex}`,
+						value: Math.max(store[section][index].options.left[questionIndex].value - 1, 0),
+					}),
+				}}
+			))}/>;
 	default:
 		return null;
 	}
