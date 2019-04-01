@@ -16,7 +16,7 @@ div.modal {
 	top: 1vh;
 	right: 1vw;
 	left: 1vw;
-	bottom: 1vh;
+	bottom: 0;
 	background: var(--bg);
 	z-index: 1;
 }
