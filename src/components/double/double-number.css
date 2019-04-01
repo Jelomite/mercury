@@ -1,3 +1,5 @@
+@import "../../style.css";
+
 div.double {
 	display: flex;
 	margin-top: 0;
@@ -14,7 +16,7 @@ section.right {
 }
 
 .seperator {
-	background-color: #222;
+	background-color: var(--fg);
 	width: 0px;
 	margin-top: 1.2em;
 	padding: 0.5px;

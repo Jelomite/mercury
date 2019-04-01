@@ -11,7 +11,14 @@ const SettingsPage = () => {
 			<Enum
 				options={["Light", "Dark"]}
 				active={store.darkMode ? 1 : 0}
-				onClick={value => dispatch({type: value === 1 ? "SET_DARK" : "SET_LIGHT"})}/>
+				onClick={value => {
+					dispatch({type: value === 1 ? "SET_DARK" : "SET_LIGHT"});
+					if(value === 1) {
+						document.body.classList.add("dark");
+					} else {
+						document.body.classList.remove("dark");
+					}
+				}}/>
 		</>
 	);
 };

@@ -1,3 +1,5 @@
+@import "../style.css";
+
 @media (max-width: 600px){
 	div.form {
 	  overflow: scroll;
@@ -19,7 +21,7 @@
 h5 {
 	font-size: 0.8em;
 	text-align: center;
-	color: #222;
+	color: var(--fg);
 	padding: 0.3em 0;
 	margin-top: 0;
 }
@@ -27,7 +29,7 @@ h5 {
 h4 {
 	font-size: 1em;
 	text-align: center;
-	color: #222;
+	color: var(--fg);
 	padding: 1em 0 0.3em 0;
 }
 
@@ -43,11 +45,11 @@ section.section {
 hr.divider {
 	margin-bottom: 3.5em;
 	border: none;
-	background-color: #222;
+	background-color: var(--fg);
 	height: 1px;
 }
 
 h4 > span.gray {
-	color: #aaa;
+	color: var(--gray);
 	font-weight: 100;
 }

@@ -1,12 +1,14 @@
+@import "../../style.css";
+
 img {
 	height: 1.5em;
 	width: 1.5em;
 	cursor: pointer;
-	filter: invert(.20);
+	filter: invert(var(--invert));
 }
 
 img:hover {
-	filter: invert(0);
+	filter: invert(var(--invert-hover));
 }
 
 div.modal {
@@ -15,6 +17,6 @@ div.modal {
 	right: 1vw;
 	left: 1vw;
 	bottom: 1vh;
-	background: white;
+	background: var(--bg);
 	z-index: 1;
 }

@@ -1,9 +1,11 @@
+@import "../../style.css";
+
 input.ui.input {
 	padding: 1em;
 	border-radius: 0.4em;
-	border: 1px solid #222;
-	color: #222;
-	background: #fff;
+	border: 1px solid var(--fg);
+	color: var(--fg);
+	background: var(--bg);
 	width: 100%;
 	display: flex;
 	box-sizing: border-box;
@@ -11,7 +13,7 @@ input.ui.input {
 }
 
 input.ui.input:focus::-webkit-input-placeholder {
-	color: #aaa;
+	color: var(--gray);
 }
 
 input.ui.input:focus {

@@ -1,5 +1,42 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+/* Global Colors:*/
+body {
+  --bg: #fff;
+  --fg: #222;
+  --red: #FF1126;
+  --dark-red: #F01126;
+  --blue: #0074D9;
+  --dark-blue: #006AC0;
+  --hover-fg: #000;
+  --hover-bg: #ccc;
+  --active-bg: #222;
+  --active-fg: #fff;
+  --active-hover-bg: #000;
+  --active-hover-fg: #ccc;
+  --gray: #aaa;
+  --invert: .2;
+  --invert-hover: 0;
+}
+
+body.dark {
+  --bg: #222;
+  --fg: #fff;
+  --red: #FF1126;
+  --dark-red: #F01126;
+  --blue: #0074D9;
+  --dark-blue: #006AC0;
+  --hover-fg: #ccc;
+  --hover-bg: #000;
+  --active-bg: #fff;
+  --active-fg: #222;
+  --active-hover-bg: #ccc;
+  --active-hover-fg: #000;
+  --gray: #aaa;
+  --invert: 1;
+  --invert-hover: .8;
+}
+
 body {
   /* disable text higlightening */
   -webkit-touch-callout: none;
@@ -17,6 +54,7 @@ body {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
   padding: 1vh 1vw;
+  background: var(--bg)
 }
 
 
