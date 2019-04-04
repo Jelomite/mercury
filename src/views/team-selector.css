@@ -14,9 +14,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h1.match {
 	margin-bottom: 0.2em;
+	margin-top: 0;
 }
 
 h4.team {
-	margin-top: 0 !important;
-	padding-top: 0.1em !important;
+	margin-top: 0;
+	padding-top: 0.1em;
 }
