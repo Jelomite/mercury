@@ -3,6 +3,7 @@ import cx from "classnames";
 import * as Question from "../components";
 import {FormContext} from "../contexts/form";
 import {MatchContext} from "../contexts/match";
+import {SettingsContext} from "../contexts/settings";
 import style from "./form.css";
 
 // this function generates a serve-ready component with everything in place.
@@ -96,6 +97,22 @@ const questionGen = (question, section, index, {store, dispatch}, color) => {
 const Form = () => {
 	const {store, dispatch} = React.useContext(FormContext);
 	const {store: matchStore} = React.useContext(MatchContext);
+	const {store: settingStore, dispatch: settingsDispatch} = React.useContext(SettingsContext);
+	React.useEffect(() => {
+		// here we check if the localStorage has a defined theme.
+		const localTheme = localStorage.getItem("darkMode");
+		// it can be only three options - "true", "false" & null (in case it's the first time the client has loaded the app).
+		if (settingStore.darkMode !== null) {
+			// if it's not null ("true" or "false"), we will set the theme to the dark if it's true. otherwise to light.
+			settingsDispatch({type: localTheme === "true" ? "SET_DARK" : "SET_LIGHT"});
+		}
+		// changing the context state is meaninless if we dont do anything about the theme itself.
+		// changing the theme we must add or remove the "dark" class from the body tag.
+		// we will set to dark theme only if the localStorage is "true". otherwise ("false" or null) - we will set it to light, which is the defualt state.
+		localTheme === "true" ?
+			document.body.classList.add("dark") :
+			document.body.classList.remove("dark");
+	}, [settingStore.darkMode]); // this useEffect will only run if the darkMode has changed.
 	return (
 		<div className={cx("form", style)}>
 			{Object.entries(store).map((section, sectionIndex) => (

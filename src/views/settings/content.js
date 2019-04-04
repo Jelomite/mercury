@@ -14,9 +14,9 @@ const SettingsPage = () => {
 				onClick={value => {
 					dispatch({type: value === 1 ? "SET_DARK" : "SET_LIGHT"});
 					if(value === 1) {
-						document.body.classList.add("dark");
+						localStorage.setItem("darkMode", true);
 					} else {
-						document.body.classList.remove("dark");
+						localStorage.setItem("darkMode", false);
 					}
 				}}/>
 		</>
