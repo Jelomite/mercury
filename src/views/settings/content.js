@@ -13,11 +13,7 @@ const SettingsPage = () => {
 				active={store.darkMode ? 1 : 0}
 				onClick={value => {
 					dispatch({type: value === 1 ? "SET_DARK" : "SET_LIGHT"});
-					if(value === 1) {
-						localStorage.setItem("darkMode", true);
-					} else {
-						localStorage.setItem("darkMode", false);
-					}
+					localStorage.setItem("darkMode", value === 1);
 				}}/>
 		</>
 	);

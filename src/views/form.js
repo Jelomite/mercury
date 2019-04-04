@@ -102,14 +102,18 @@ const Form = () => {
 		// here we check if the localStorage has a defined theme.
 		const localTheme = localStorage.getItem("darkMode");
 		// it can be only three options - "true", "false" & null (in case it's the first time the client has loaded the app).
-		if (settingStore.darkMode !== null) {
-			// if it's not null ("true" or "false"), we will set the theme to the dark if it's true. otherwise to light.
+		if (localTheme !== null && settingStore.darkMode.toString() !== localTheme) {
+			// if it's not null ("true" or "false"), and the localStorage differs from our context, we must update the context.
 			settingsDispatch({type: localTheme === "true" ? "SET_DARK" : "SET_LIGHT"});
+		} else {
+			//otherwise, if the localStorage is null (it can't be the other option because it will never happen), we update the localStorage.
+			// this will happen only on the first time when the client has run the app.
+			localStorage.setItem("darkMode", settingStore.darkMode);
 		}
 		// changing the context state is meaninless if we dont do anything about the theme itself.
 		// changing the theme we must add or remove the "dark" class from the body tag.
-		// we will set to dark theme only if the localStorage is "true". otherwise ("false" or null) - we will set it to light, which is the defualt state.
-		localTheme === "true" ?
+		// we will set to dark theme only if the darkMode context is true. otherwise  - we will set it to light, which is the defualt state.
+		settingStore.darkMode ?
 			document.body.classList.add("dark") :
 			document.body.classList.remove("dark");
 	}, [settingStore.darkMode]); // this useEffect will only run if the darkMode has changed.
