@@ -42,7 +42,7 @@ const Table = props => {
 	}, []);
 	return (
 		<React.Fragment>
-			<h1>{store.match}</h1>
+			<h1 className="match">{store.match}</h1>
 			<div className={cx("container", style)}>
 				{
 					// display the selection component. if the client chose a team, display its ID instead.
