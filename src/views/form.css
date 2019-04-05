@@ -2,22 +2,35 @@
 
 @media (max-width: 600px){
 	div.form {
-	  overflow: scroll;
-	  height: 100vh;
-	  scroll-snap-type: y mandatory;
-	  scroll-padding: 0 0 30vh 0;
+		display: flex;
+		overflow-x: scroll;
+		scroll-snap-type: x mandatory;
+		scroll-snap-destination: 50% 50%;
 	}
 
 	section.section {
-	  margin-bottom: 130vh;
-	  scroll-snap-align: start;
-	  scroll-snap-type: y mandatory;
+		overflow-y: hidden;
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
+		min-width: 100%;
+		margin: 0;
+	}
+
+	section.inner {
+		max-height: 65vh;
+		overflow-y: scroll;
+		margin: 1em 1em 0 1em;
 	}
 
 	body {
 		overflow: hidden;
 	}
+
+	::-webkit-scrollbar{
+		display: none;
+	}
 }
+
 h5 {
 	font-size: 0.8em;
 	text-align: center;
