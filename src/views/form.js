@@ -137,7 +137,7 @@ const Form = () => {
 
 			))}
 			<section className="section" id="validation">
-				<h2>Submition</h2>
+				<h2>Submission</h2>
 				<section className="inner">
 					<pre className="validation">
 						error list for form validation:
