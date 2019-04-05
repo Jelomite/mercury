@@ -123,17 +123,32 @@ const Form = () => {
 				<React.Fragment key={sectionIndex}>
 					<section className={cx("section", style)}>
 						<h2>{section[0]}</h2>
-						{section[1].map((question, questionIndex) => (
-							<div className="question" key={questionIndex}>
-								<h4>{question.name} {question.type === "multiple" ? <span className="gray">(M)</span> : ""}</h4>
-								{questionGen(question, section[0], questionIndex, {store, dispatch}, matchStore.alliance)}
-							</div>
-						))}
+						<section className="inner">
+							{section[1].map((question, questionIndex) => (
+								<div className="question" key={questionIndex}>
+									<h4>{question.name} {question.type === "multiple" ? <span className="gray">(M)</span> : ""}</h4>
+									{questionGen(question, section[0], questionIndex, {store, dispatch}, matchStore.alliance)}
+								</div>
+							))}
+						</section>
 					</section>
 					<hr className="divider"/>
 				</React.Fragment>
 
 			))}
+			<section className="section" id="validation">
+				<h2>Submition</h2>
+				<section className="inner">
+					<pre className="validation">
+						error list for form validation:
+					</pre>
+					<Question.ButtonGroup>
+						<Question.Button onClick={() => console.log({store})}>
+						Submit
+						</Question.Button>
+					</Question.ButtonGroup>
+				</section>
+			</section>
 		</div>
 	);
 

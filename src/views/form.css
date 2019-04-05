@@ -22,6 +22,10 @@
 		margin: 1em 1em 0 1em;
 	}
 
+	pre.validation {
+		min-height: 29em;
+	}
+
 	body {
 		overflow: hidden;
 	}
@@ -65,4 +69,8 @@ hr.divider {
 h4 > span.gray {
 	color: var(--gray);
 	font-weight: 100;
+}
+
+pre.validation {
+	color: var(--fg);
 }
