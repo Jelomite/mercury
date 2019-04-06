@@ -95,10 +95,8 @@ const questionGen = (question, section, index, {store, dispatch}, color) => {
 	}
 };
 
-const Form = () => {
-	const {store, dispatch} = React.useContext(FormContext);
-	const {store: matchStore} = React.useContext(MatchContext);
-	const {store: settingStore, dispatch: settingsDispatch} = React.useContext(SettingsContext);
+// custom useEffect for form validation.
+const useValidation = store => {
 	const [valid, setValid] = React.useState([]);
 	React.useEffect(() => {
 		let errors = [];
@@ -107,11 +105,19 @@ const Form = () => {
 				const test = question.validation ?
 					compile(question.validation, {...question, parent: store[section]}) :
 					true;
-				errors.push({test, name: question.name});
+				errors.push({test, name: question.name, value: question.value, section});
 			}
 		}
 		setValid(errors);
 	}, [store]);
+	return [valid, setValid];
+};
+
+const Form = () => {
+	const {store, dispatch} = React.useContext(FormContext);
+	const {store: matchStore} = React.useContext(MatchContext);
+	const {store: settingStore, dispatch: settingsDispatch} = React.useContext(SettingsContext);
+	const [valid] = useValidation(store);
 
 	React.useEffect(() => {
 		// here we check if the localStorage has a defined theme.
@@ -153,9 +159,10 @@ const Form = () => {
 			))}
 			<section className="section" id="validation">
 				<h2>Submission</h2>
+				<h3>fix the following values to submit form:</h3>
 				<section className="inner">
 					<pre className="validation">
-						{valid.map((el, i) => el.test || <h6 key={el.name + i}>{el.name}</h6>)}
+						{valid.map(el => el.test || `${el.section} - ${el.name}\n`)}
 					</pre>
 					<Question.ButtonGroup>
 						<Question.Button onClick={() => console.log({store})}>
