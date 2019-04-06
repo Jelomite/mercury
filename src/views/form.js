@@ -5,6 +5,7 @@ import {FormContext} from "../contexts/form";
 import {MatchContext} from "../contexts/match";
 import {SettingsContext} from "../contexts/settings";
 import style from "./form.css";
+import {compile} from "../validation-parser";
 
 // this function generates a serve-ready component with everything in place.
 const questionGen = (question, section, index, {store, dispatch}, color) => {
@@ -98,6 +99,20 @@ const Form = () => {
 	const {store, dispatch} = React.useContext(FormContext);
 	const {store: matchStore} = React.useContext(MatchContext);
 	const {store: settingStore, dispatch: settingsDispatch} = React.useContext(SettingsContext);
+	const [valid, setValid] = React.useState([]);
+	React.useEffect(() => {
+		let errors = [];
+		for (const section in store) {
+			for (const question of store[section]) {
+				const test = question.validation ?
+					compile(question.validation, {...question, parent: store[section]}) :
+					true;
+				errors.push({test, name: question.name});
+			}
+		}
+		setValid(errors);
+	}, [store]);
+
 	React.useEffect(() => {
 		// here we check if the localStorage has a defined theme.
 		const localTheme = localStorage.getItem("darkMode");
@@ -140,7 +155,7 @@ const Form = () => {
 				<h2>Submission</h2>
 				<section className="inner">
 					<pre className="validation">
-						error list for form validation:
+						{valid.map((el, i) => el.test || <h6 key={el.name + i}>{el.name}</h6>)}
 					</pre>
 					<Question.ButtonGroup>
 						<Question.Button onClick={() => console.log({store})}>

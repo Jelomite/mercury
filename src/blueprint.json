@@ -7,7 +7,8 @@
 				"Cargo",
 				"None"
 			],
-			"value": -1
+			"value": -1,
+			"validation": "value>=0"
 		},
 		{
 			"name": "Started At",
@@ -16,13 +17,15 @@
 				"Level 1",
 				"Level 2"
 			],
-			"value": -1
+			"value": -1,
+			"validation": "value>=0"
 		}
 	],
 	"sandstorm": [{
 			"name": "Crossed Hub Line?",
 			"type": "boolean",
-			"value": -1
+			"value": -1,
+			"validation": "value>=0"
 		},
 		{
 			"name": "Cargo",
@@ -42,7 +45,8 @@
 							"value": 0
 						}
 					]
-				}
+				},
+				"validation": "options.right[0].value+options.left[0].value>=parent[2].value"
 		},
 		{
 			"name": "Puts Cargo to:",
@@ -56,7 +60,8 @@
 				false,
 				false,
 				false
-			]
+			],
+			"validation": "value>0"
 		},
 		{
 			"name": "Hatch",
@@ -76,7 +81,8 @@
 						"value": 0
 					}
 				]
-			}
+			},
+			"validation": "options.right[0].value+options.left[0].value>=parent[4].value"
 		},
 		{
 			"name": "Puts Hatch to:",
@@ -90,7 +96,8 @@
 				false,
 				false,
 				false
-			]
+			],
+			"validation": "value>0"
 		}
 	],
 	"teleop": [
@@ -112,7 +119,8 @@
 							"value": 0
 						}
 					]
-				}
+				},
+				"validation": "options.right[0].value+options.left[0].value>=parent[1].value"
 		},
 		{
 			"name": "Puts Cargo to:",
@@ -126,7 +134,8 @@
 				false,
 				false,
 				false
-			]
+			],
+			"validation": "value>0"
 		},
 		{
 			"name": "Hatch",
@@ -146,7 +155,8 @@
 						"value": 0
 					}
 				]
-			}
+			},
+			"validation": "options.right[0].value+options.left[0].value>=parent[3].value"
 		},
 		{
 			"name": "Puts Hatch to:",
@@ -160,17 +170,20 @@
 				false,
 				false,
 				false
-			]
+			],
+			"validation": "value>0"
 		},
 		{
 			"name": "Played Defensively?",
 			"type": "boolean",
-			"value": -1
+			"value": -1,
+			"validation": "value>=0"
 		},
 		{
 			"name": "Robot Broke?",
 			"type": "boolean",
-			"value": -1
+			"value": -1,
+			"validation": "value>=0"
 		},
 		{
 			"name": "Comments",
@@ -187,12 +200,14 @@
 			"Level 2",
 			"Level 3"
 		],
-    "value": -1
+    "value": -1,
+		"validation": "value>=0"
 	}],
 	"general": [{
 			"name": "Robot Broke?",
 			"type": "boolean",
-			"value": -1
+			"value": -1,
+			"validation": "value>=0"
 		},
 		{
 			"name": "What did brake?",
@@ -202,7 +217,8 @@
 		{
 			"name": "Red or Yellow Card?",
 			"type": "boolean",
-			"value": -1
+			"value": -1,
+			"validation": "value>=0"
 		},
 		{
 			"name": "Comments",
