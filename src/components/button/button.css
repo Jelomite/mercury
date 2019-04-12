@@ -36,6 +36,18 @@ button.ui.btn.active:hover {
 	color: var(--active-hover-fg);
 }
 
+button.ui.btn[disabled]:hover,
+button.ui.btn[disabled] {
+	cursor: default;
+	background-color: var(--bg);
+	border-color: var(--fg);
+	color: var(--fg);
+	box-sizing: border-box;
+	position: relative;
+	display: inline-block;
+	opacity: 0.2;
+}
+
 @media (hover:none) {
 	button.ui.btn.active:hover {
 		background-color: var(--active-bg);

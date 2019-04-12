@@ -165,7 +165,7 @@ const Form = () => {
 						{valid.map(el => el.test || `${el.section} - ${el.name}\n`)}
 					</pre>
 					<Question.ButtonGroup>
-						<Question.Button onClick={() => console.log({store})}>
+						<Question.Button disabled={valid.filter(el => !el.test).length !== 0} onClick={() => console.log({store})}>
 						Submit
 						</Question.Button>
 					</Question.ButtonGroup>
