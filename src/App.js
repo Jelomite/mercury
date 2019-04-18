@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ScoutingForm from "./pages/scouting-form";
+import Container from "./pages/container";
 import SignPage from "./pages/sign-up";
 
 import withFirebaseAuth from "react-with-firebase-auth";
@@ -15,7 +15,7 @@ const providers = {
 };
 
 const App = props => {
-	return props.user ? <ScoutingForm match="2019isde3_sf2m1" {...props}/> : <SignPage {...props} />;
+	return props.user ? <Container match="2019isde3_sf2m1" {...props}/> : <SignPage {...props} />;
 };
 
 App.propTypes = {
