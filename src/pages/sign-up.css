@@ -1,0 +1,24 @@
+div.container.signup {
+	padding-top: 2em;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.strapline {
+	text-align: left;
+	padding-bottom: 0;
+	padding-left: 0.5em;
+}
+
+.title {
+	padding-top: 0;
+	margin-top: -0.1em;
+	font-size: 5em;
+}
+
+img.logo {
+	height: 35vh;
+	width: auto;
+	transform: rotate(-80deg) translate(-4em, 1em);
+}
