@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {Enum} from "../../components";
+import {Button, ButtonGroup, Enum} from "../../components";
 import {SettingsContext} from "../../contexts/settings";
 
 const SettingsPage = () => {
@@ -15,6 +15,10 @@ const SettingsPage = () => {
 					dispatch({type: value === 1 ? "SET_DARK" : "SET_LIGHT"});
 					localStorage.setItem("darkMode", value === 1);
 				}}/>
+			<h4 />
+			<ButtonGroup>
+				<Button onClick={store.auth.signOut}>Sign Out</Button>
+			</ButtonGroup>
 		</>
 	);
 };
