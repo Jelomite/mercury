@@ -18,7 +18,7 @@ const SignPage = props => {
 				<img className="logo" src={screw} alt="Mercury's logo" />
 				<h4 className="strapline">welcome to:</h4>
 				<h1 className="title">Mercury</h1>
-				<Button onClick={props.signInWithGoogle}>Sign in</Button>
+				<Button onClick={props.signInWithGoogle}>Sign in with Google</Button>
 			</div>
 		</div>
 	);
