@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cx from "classnames";
-import style from "./input.css";
+import "./input.css";
 
 const Input = props => (
 	<input
-		className={cx("ui", "input", style)}
+		className="ui input"
 		placeholder={props.placeholder}
 		type={props.type}
 		style={props.type === "number" ?

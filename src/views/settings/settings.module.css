@@ -1,17 +1,17 @@
 @import "../../style.css";
 
-img {
+.icon {
 	height: 1.5em;
 	width: 1.5em;
 	cursor: pointer;
 	filter: invert(var(--invert));
 }
 
-img:hover {
+.icon:hover {
 	filter: invert(var(--invert-hover));
 }
 
-div.modal {
+.modal {
 	position: absolute;
 	top: 1vh;
 	right: 1vw;

@@ -1,10 +1,9 @@
 import React from "react";
-import cx from "classnames";
 import * as Question from "../components";
 import {FormContext} from "../contexts/form";
 import {MatchContext} from "../contexts/match";
 import {SettingsContext} from "../contexts/settings";
-import style from "./form.css";
+import style from "./form.module.css";
 import {compile} from "../validation-parser";
 
 // this function generates a serve-ready component with everything in place.
@@ -139,29 +138,29 @@ const Form = () => {
 			document.body.classList.remove("dark");
 	}, [settingStore.darkMode]); // this useEffect will only run if the darkMode has changed.
 	return (
-		<div className={cx("form", style)}>
+		<div className={style.form}>
 			{Object.entries(store).map((section, sectionIndex) => (
 				<React.Fragment key={sectionIndex}>
-					<section className={cx("section", style)}>
+					<section className={style.section}>
 						<h2>{section[0]}</h2>
-						<section className="inner">
+						<section className={style.inner}>
 							{section[1].map((question, questionIndex) => (
-								<div className="question" key={questionIndex}>
-									<h4>{question.name} {question.type === "multiple" ? <span className="gray">(M)</span> : ""}</h4>
+								<div className={style.question} key={questionIndex}>
+									<h4>{question.name} {question.type === "multiple" ? <span className={style.gray}>(M)</span> : ""}</h4>
 									{questionGen(question, section[0], questionIndex, {store, dispatch}, matchStore.alliance)}
 								</div>
 							))}
 						</section>
 					</section>
-					<hr className="divider"/>
+					<hr className={style.divider}/>
 				</React.Fragment>
 
 			))}
-			<section className="section" id="validation">
+			<section className={style.section} id="validation">
 				<h2>Submission</h2>
 				<h3>fix the following values to submit form:</h3>
-				<section className="inner">
-					<pre className="validation">
+				<section className={style.inner}>
+					<pre className={style.validation}>
 						{valid.map(el => el.test || `${el.section} - ${el.name}\n`)}
 					</pre>
 					<Question.ButtonGroup>

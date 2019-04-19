@@ -1,9 +1,8 @@
 import React from "react";
-import cx from "classnames";
 import PropTypes from "prop-types";
 import * as Component from "../components";
 import {MatchContext} from "../contexts/match";
-import style from "./team-selector.css";
+import style from "./team-selector.module.css";
 import * as TBA from "../TBA";
 
 // parse the matchKey to readable format. this will later be stored in the store.match
@@ -42,12 +41,12 @@ const Table = props => {
 	}, []);
 	return (
 		<React.Fragment>
-			<h1 className="match">{store.match}</h1>
-			<div className={cx("container", style)}>
+			<h1 className={style.match}>{store.match}</h1>
+			<div className={style.container}>
 				{
 					// display the selection component. if the client chose a team, display its ID instead.
 					store.teamID !== -1 ? ( // -1 is the defualt value of the ID.
-						<h4 className="team">Team #{store.teamID}</h4>
+						<h4 className={style.team}>Team #{store.teamID}</h4>
 					) : (
 						<React.Fragment>
 							{

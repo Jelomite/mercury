@@ -1,6 +1,6 @@
 @import "../style.css";
 
-div.container.signup {
+.container {
 	padding-top: 2em;
 	display: flex;
 	justify-content: center;
@@ -19,12 +19,12 @@ div.container.signup {
 	font-size: 5em;
 }
 
-img.logo {
+.logo {
 	height: 35vh;
 	width: auto;
 	transform: rotate(-80deg) translate(-4em, 1em);
 	filter: invert(var(--invert));
 }
 
-img.logo:hover {
+.logo:hover {
 	filter: invert(var(--invert));}

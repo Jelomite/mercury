@@ -1,22 +1,17 @@
 import React, {useState} from "react";
-import cx from "classnames";
-import style from "./settings.css";
+import style from "./settings.module.css";
 import gearIcon from "../../img/settings.svg";
 import closeIcon from "../../img/close.svg";
 import Content from "./content";
 
 const Gear = props => (
-	<div className={cx("icon", style)}>
-		<img src={gearIcon} alt="settings" {...props}/>
-	</div>
+	<img className={style.icon} src={gearIcon} alt="settings" {...props}/>
 );
 
 const Modal = props => (
-	<div id="root" className={cx("modal", style)}>
-		<img className="close" src={closeIcon} alt="close" {...props}/>
-		<div className="content">
-			<Content />
-		</div>
+	<div id="root" className={style.modal}>
+		<img className={style.icon} src={closeIcon} alt="close" {...props}/>
+		<Content />
 	</div>
 );
 

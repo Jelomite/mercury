@@ -1,18 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
-import style from "./button.css";
+import "./button.css";
 
 const Button = props => (
 	<button
-		className={cx(
-			"btn",
-			"ui",
-			props.active ? "active" : "",
-			props.color,
-			props.tinted ? "tinted" : "",
-			style
-		)}
+		className={cx("btn ui",{"active": props.active, "tinted": props.tinted}, props.color)}
 		{...props}>
 		{props.children}
 	</button>

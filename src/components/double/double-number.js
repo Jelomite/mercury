@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cx from "classnames";
 import {ButtonInput} from "../input";
-import style from "./double-number.css";
+import style from "./double-number.module.css";
 
 const Double = props => (
 	// this component creates a split screen ButtonInput with a seperator in the middle.
-	<div className={cx("double", style)}>
-		<section className="left">
+	<div className={style.double}>
+		<section className={style.left}>
 			{props.left.map((question, index) => (
 				<React.Fragment key={index}>
 					<h5>{question.name}</h5>
@@ -18,8 +17,8 @@ const Double = props => (
 				</React.Fragment>
 			))}
 		</section>
-		<section className="seperator"></section>
-		<section className="right">
+		<section className={style.seperator}></section>
+		<section className={style.right}>
 			{props.right.map((question, index) => (
 				<React.Fragment key={index}>
 					<h5>{question.name}</h5>

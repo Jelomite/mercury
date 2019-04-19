@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cx from "classnames";
 import {Button} from "../button";
 import Input from "./input";
-import style from "./input-with-buttons.css";
+import "./input-with-buttons.css";
 
 const ButtonInput = props => {
 	return (
-		<div className={cx("ui", "btn-input", style)}>
+		<div className="ui btn-input">
 			<Button
 				onClick={props.onClick.left}>
 				{props.left}
