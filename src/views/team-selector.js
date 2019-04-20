@@ -73,6 +73,7 @@ const Table = props => {
 									<Component.ButtonGroup key={index}>
 										<Component.Button
 											tinted color={Object.keys(used).includes(team) ? "" : "blue"}
+											disabled={Object.keys(used).includes(team) && used[team] !== settingStore.auth.user.displayName}
 											onClick={() => {
 												dispatch({
 													type: "SET_TEAMID",
@@ -86,6 +87,7 @@ const Table = props => {
 										</Component.Button>
 										<Component.Button
 											tinted color={Object.keys(used).includes(store.red[index]) ? "" : "red"}
+											disabled={Object.keys(used).includes(store.red[index]) && used[store.red[index]] !== settingStore.auth.user.displayName}
 											onClick={() => {
 												dispatch({
 													type: "SET_TEAMID",
