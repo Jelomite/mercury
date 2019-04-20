@@ -5,6 +5,7 @@ import screw from "../img/screw.svg";
 import style from "./sign-up.module.css";
 
 const SignPage = props => {
+	// set the theme to dark if localStorage has it defined.
 	useEffect(() => {
 		if(localStorage.getItem("darkMode") === "true") {
 			document.body.classList.add("dark");

@@ -5,7 +5,9 @@ import ScoutingForm from "./authorized-content/scouting-form";
 import {provideComponent} from "../contexts/form";
 import {provideMatch} from "../contexts/match";
 import {SettingsContext, provideSettings} from "../contexts/settings";
-
+// this is our main container, every page that is authorized will be rendered from here.
+// in the future, this will be using the react-router to serve different pages within the app.
+// the container manages all of the states. anything above that is outside of the global state scope.
 const Container = props => {
 	const {store, dispatch} = useContext(SettingsContext);
 	useEffect(() => {
@@ -15,6 +17,7 @@ const Container = props => {
 		}});
 		console.log(store.auth);
 	}, [store.auth.user]);
+	// the container will return Settings and a page based on the route.
 	return (
 		<>
 			<Settings />
@@ -28,5 +31,5 @@ Container.propTypes = {
 	user: PropTypes.object,
 	signOut: PropTypes.func,
 };
-
+// here we provide all of the states. in future the pipeline operator will come in handy.
 export default provideSettings(provideComponent(provideMatch(Container)));
