@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext, useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import * as Component from "../components";
 import {MatchContext} from "../contexts/match";
+import {SettingsContext} from "../contexts/settings";
 import style from "./team-selector.module.css";
 import * as TBA from "../TBA";
+import {db} from "../firebase";
 
 // parse the matchKey to readable format. this will later be stored in the store.match
 const parseMatch = matchKey => {
@@ -28,8 +30,10 @@ const parseMatch = matchKey => {
 };
 
 const Table = props => {
-	const {store, dispatch} = React.useContext(MatchContext);
-	React.useEffect(() => {
+	const {store, dispatch} = useContext(MatchContext);
+	const {store: settingStore} = useContext(SettingsContext);
+	const [used, setUsed] = useState({});
+	useEffect(() => {
 		//TODO: this matchKey shouldn't be hardcoded.
 		TBA.fetchSingleMatchFromEvent(props.match).then(r => {
 			// setting initial state of MatchContext.
@@ -39,6 +43,21 @@ const Table = props => {
 			dispatch({type: "SET_MATCH", value: parseMatch(props.match.split("_")[1])});
 		});
 	}, []);
+
+	useEffect(() => {
+		db.ref().child("scouting/" + props.match).on("value", snap => {
+			if (snap.val() !== null) {
+				setUsed(snap.val());
+			} else {
+				setUsed({});
+			}
+		});
+	}, []);
+
+	const handleTeamSelect = team => {
+		db.ref().child("scouting/" + store.matchKey + "/" + team).set(settingStore.auth.user.displayName);
+	};
+
 	return (
 		<React.Fragment>
 			<h1 className={style.match}>{store.match}</h1>
@@ -52,27 +71,31 @@ const Table = props => {
 							{
 								store.blue.map((team, index) => (
 									<Component.ButtonGroup key={index}>
-										<Component.Button tinted color="blue"
+										<Component.Button
+											tinted color={Object.keys(used).includes(team) ? "" : "blue"}
 											onClick={() => {
 												dispatch({
 													type: "SET_TEAMID",
 													value: team,
 												});
 												dispatch({type: "BLUE_ALLIANCE"});
+												handleTeamSelect(team);
 											}}
 										>
-											{team}
+											{`${team} ${used[team] ? `(${used[team]})` : ""}`}
 										</Component.Button>
-										<Component.Button tinted color="red"
+										<Component.Button
+											tinted color={Object.keys(used).includes(store.red[index]) ? "" : "red"}
 											onClick={() => {
 												dispatch({
 													type: "SET_TEAMID",
 													value: store.red[index],
 												});
 												dispatch({type: "RED_ALLIANCE"});
+												handleTeamSelect(store.red[index]);
 											}}
 										>
-											{store.red[index]}
+											{`${store.red[index]} ${used[store.red[index]] ? `(${used[store.red[index]]})` : ""}`}
 										</Component.Button>
 									</Component.ButtonGroup>
 								))
