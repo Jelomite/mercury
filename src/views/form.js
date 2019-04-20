@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect, useContext} from "react";
 import * as Question from "../components";
 import {FormContext} from "../contexts/form";
 import {MatchContext} from "../contexts/match";
@@ -97,8 +97,8 @@ const questionGen = (question, section, index, {store, dispatch}, color) => {
 
 // custom useEffect for form validation.
 const useValidation = store => {
-	const [valid, setValid] = React.useState([]);
-	React.useEffect(() => {
+	const [valid, setValid] = useState([]);
+	useEffect(() => {
 		let errors = [];
 		for (const section in store) {
 			for (const question of store[section]) {
@@ -114,12 +114,12 @@ const useValidation = store => {
 };
 
 const Form = () => {
-	const {store, dispatch} = React.useContext(FormContext);
-	const {store: matchStore} = React.useContext(MatchContext);
-	const {store: settingStore, dispatch: settingsDispatch} = React.useContext(SettingsContext);
+	const {store, dispatch} = useContext(FormContext);
+	const {store: matchStore} = useContext(MatchContext);
+	const {store: settingStore, dispatch: settingsDispatch} = useContext(SettingsContext);
 	const [valid] = useValidation(store);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		// here we check if the localStorage has a defined theme.
 		const localTheme = localStorage.getItem("darkMode");
 		// it can be only three options - "true", "false" & null (in case it's the first time the client has loaded the app).
