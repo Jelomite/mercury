@@ -5,6 +5,7 @@ import {MatchContext} from "../contexts/match";
 import {SettingsContext} from "../contexts/settings";
 import style from "./form.module.css";
 import {compile} from "../validation-parser";
+import {db} from "../firebase";
 
 // this function generates a serve-ready component with everything in place.
 const questionGen = (question, section, index, {store, dispatch}, color) => {
@@ -137,6 +138,32 @@ const Form = () => {
 			document.body.classList.add("dark") :
 			document.body.classList.remove("dark");
 	}, [settingStore.darkMode]); // this useEffect will only run if the darkMode has changed.
+
+	const handleSubmit = () => {
+		const flatData = Object.keys(store).reduce((obj, section) => {
+			obj[section] = store[section].reduce((questions, question) => {
+				questions[question.name] = question.type !== "double" ? question.value :
+					Object.keys(question.options).reduce((sides, side) => {
+						sides = {...sides, ...question.options[side].reduce((sideQuestions, sideQuestion) => {
+							sideQuestions[sideQuestion.name] = sideQuestion.value;
+							return sideQuestions;
+						}, {})};
+						return sides;
+					}, {});
+				return questions;
+			}, {});
+			return obj;
+		}, {});
+		db.ref().child("matches/" + matchStore.matchKey).set({[matchStore.teamID]: flatData}, error => {
+			if (error) {
+				alert(error);
+			} else {
+				// replace with return to home (later when the home page will be done).
+				window.location.reload();
+			}
+		});
+	};
+
 	return (
 		<div className={style.form}>
 			{Object.entries(store).map((section, sectionIndex) => (
@@ -164,7 +191,7 @@ const Form = () => {
 						{valid.map(el => el.test || `${el.section} - ${el.name}\n`)}
 					</pre>
 					<Question.ButtonGroup>
-						<Question.Button disabled={valid.filter(el => !el.test).length !== 0} onClick={() => console.log({store})}>
+						<Question.Button disabled={valid.filter(el => !el.test).length !== 0} onClick={handleSubmit}>
 						Submit
 						</Question.Button>
 					</Question.ButtonGroup>
