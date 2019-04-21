@@ -120,9 +120,12 @@ const Form = () => {
 	const [valid] = useValidation(store);
 
 	const handleSubmit = () => {
+		// flatten the data from our state to include only the values.
 		const flatData = Object.keys(store).reduce((obj, section) => {
 			obj[section] = store[section].reduce((questions, question) => {
 				questions[question.name] = question.type !== "double" ? question.value :
+					// this part is for the "double" questions,
+					//it will return all of the inner questions as one object.
 					Object.keys(question.options).reduce((sides, side) => {
 						sides = {...sides, ...question.options[side].reduce((sideQuestions, sideQuestion) => {
 							sideQuestions[sideQuestion.name] = sideQuestion.value;
@@ -134,10 +137,12 @@ const Form = () => {
 			}, {});
 			return obj;
 		}, {});
+		// upload the data to the db
 		db.ref().child("matches/" + matchStore.matchKey).set({[matchStore.teamID]: flatData}, error => {
 			if (error) {
 				alert(error);
 			} else {
+				// if upload was successful, go back to homepage
 				settingStore.history.push("/");
 			}
 		});

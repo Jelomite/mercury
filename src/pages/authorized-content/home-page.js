@@ -1,6 +1,7 @@
 import React from "react";
 import {SettingsContext} from "../../contexts/settings";
-// combine the scoutingForm to be a single component.
+// this will be our personal page with links to everywhere needed.
+// this lives on "/".
 const HomePage = () => {
 	const {store} = React.useContext(SettingsContext);
 	return (

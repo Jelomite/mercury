@@ -15,6 +15,7 @@ const Modal = props => (
 	</div>
 );
 
+// responsible for viewing and hiding the settings page content.
 const Settings = () => {
 	const [visible, setVisible] = useState(false);
 	return visible ? (

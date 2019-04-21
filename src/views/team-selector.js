@@ -33,8 +33,8 @@ const Table = props => {
 	const {store, dispatch} = useContext(MatchContext);
 	const {store: settingStore} = useContext(SettingsContext);
 	const [used, setUsed] = useState({});
+	// set all the data from TBA in settings
 	useEffect(() => {
-		//TODO: this matchKey shouldn't be hardcoded.
 		TBA.fetchSingleMatchFromEvent(props.match).then(r => {
 			// setting initial state of MatchContext.
 			dispatch({type: "SET_MATCHKEY", value: props.match});
@@ -43,7 +43,7 @@ const Table = props => {
 			dispatch({type: "SET_MATCH", value: parseMatch(props.match.split("_")[1])});
 		});
 	}, []);
-
+	// set used state when db changes
 	useEffect(() => {
 		db.ref().child("scouting/" + props.match).on("value", snap => {
 			if (snap.val() !== null) {
