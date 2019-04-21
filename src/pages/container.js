@@ -1,10 +1,13 @@
 import React, {useContext, useEffect} from "react";
 import PropTypes from "prop-types";
+import {Switch, Route} from "react-router-dom";
+
 import Settings from "../views/settings/settings";
 import ScoutingForm from "./authorized-content/scouting-form";
 import {provideComponent} from "../contexts/form";
 import {provideMatch} from "../contexts/match";
 import {SettingsContext, provideSettings} from "../contexts/settings";
+
 // this is our main container, every page that is authorized will be rendered from here.
 // in the future, this will be using the react-router to serve different pages within the app.
 // the container manages all of the states. anything above that is outside of the global state scope.
@@ -21,7 +24,9 @@ const Container = props => {
 	return (
 		<>
 			<Settings />
-			<ScoutingForm match={props.match}/>
+			<Switch>
+				<Route path="/scouting/:matchID" component={ScoutingForm} />
+			</Switch>
 		</>
 	);
 };
