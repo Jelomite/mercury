@@ -12,10 +12,10 @@ const Button = props => (
 );
 
 Button.propTypes = {
-	active: PropTypes.bool,
+	active: PropTypes.string,
 	children: PropTypes.node,
 	color: PropTypes.string,
-	tinted: PropTypes.bool,
+	tinted: PropTypes.string,
 };
 
 export default Button;

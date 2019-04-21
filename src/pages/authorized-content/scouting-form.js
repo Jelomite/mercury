@@ -12,7 +12,7 @@ const ScoutingForm = props => (
 );
 
 ScoutingForm.propTypes = {
-	match: PropTypes.string,
+	match: PropTypes.object,
 };
 
 export default ScoutingForm;

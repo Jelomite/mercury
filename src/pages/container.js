@@ -58,7 +58,6 @@ const Container = props => {
 };
 
 Container.propTypes = {
-	match: PropTypes.string,
 	user: PropTypes.object,
 	signOut: PropTypes.func,
 	history: PropTypes.object,

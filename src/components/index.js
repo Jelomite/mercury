@@ -8,7 +8,7 @@ const Enum = props => (
 	<ButtonGroup>
 		{props.options.map((text, index) => (
 			<Button
-				active={props.active === index}
+				active={props.active === index ? "true" : undefined}
 				key={index}
 				onClick={() => props.onClick(index)}
 				color={props.color}
@@ -39,7 +39,7 @@ const MultipleChoice = props => (
 		{
 			props.options.map((text, index) => (
 				<Button
-					active={props.active[index]}
+					active={props.active[index] ? "true" : undefined}
 					key={index}
 					onClick={() => props.onClick(index)}
 					color={props.color}

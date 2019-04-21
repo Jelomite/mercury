@@ -27,7 +27,10 @@ ButtonInput.propTypes = {
 		right: PropTypes.func,
 		left: PropTypes.func,
 	}),
-	value: PropTypes.string,
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+	]),
 };
 
 ButtonInput.defaultProps = {
