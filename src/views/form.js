@@ -158,8 +158,7 @@ const Form = () => {
 			if (error) {
 				alert(error);
 			} else {
-				// replace with return to home (later when the home page will be done).
-				window.location.reload();
+				settingStore.history.push("/");
 			}
 		});
 	};
@@ -190,11 +189,9 @@ const Form = () => {
 					<pre className={style.validation}>
 						{valid.map(el => el.test || `${el.section} - ${el.name}\n`)}
 					</pre>
-					<Question.ButtonGroup>
-						<Question.Button disabled={valid.filter(el => !el.test).length !== 0} onClick={handleSubmit}>
+					<Question.Button disabled={valid.filter(el => !el.test).length !== 0} onClick={handleSubmit}>
 						Submit
-						</Question.Button>
-					</Question.ButtonGroup>
+					</Question.Button>
 				</section>
 			</section>
 		</div>

@@ -1,9 +1,10 @@
 import React, {useContext, useEffect} from "react";
 import PropTypes from "prop-types";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, withRouter} from "react-router-dom";
 
 import Settings from "../views/settings/settings";
 import ScoutingForm from "./authorized-content/scouting-form";
+import HomePage from "./authorized-content/home-page";
 import {provideComponent} from "../contexts/form";
 import {provideMatch} from "../contexts/match";
 import {SettingsContext, provideSettings} from "../contexts/settings";
@@ -20,12 +21,17 @@ const Container = props => {
 		}});
 		console.log(store.auth);
 	}, [store.auth.user]);
+
+	useEffect(() => {
+		dispatch({type: "SET_HISTORY", data: props.history});
+	}, []);
 	// the container will return Settings and a page based on the route.
 	return (
 		<>
 			<Settings />
 			<Switch>
 				<Route path="/scouting/:matchID" component={ScoutingForm} />
+				<Route exact path="/" component={HomePage} />
 			</Switch>
 		</>
 	);
@@ -35,6 +41,7 @@ Container.propTypes = {
 	match: PropTypes.string,
 	user: PropTypes.object,
 	signOut: PropTypes.func,
+	history: PropTypes.object,
 };
 // here we provide all of the states. in future the pipeline operator will come in handy.
-export default provideSettings(provideComponent(provideMatch(Container)));
+export default provideSettings(provideComponent(provideMatch(withRouter(Container))));

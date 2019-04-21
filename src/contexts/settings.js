@@ -4,6 +4,7 @@ export const [SettingsContext, provideSettings] = generateContext({
 	initialState: {
 		darkMode: false,
 		auth: {},
+		history: {},
 	},
 	reducer: (state, action) => {
 		switch(action.type) {
@@ -13,6 +14,8 @@ export const [SettingsContext, provideSettings] = generateContext({
 			return {...state, darkMode: false};
 		case "SET_AUTH":
 			return {...state, auth: action.data};
+		case "SET_HISTORY":
+			return {...state, history: action.data};
 		default:
 			return {...state};
 		}
