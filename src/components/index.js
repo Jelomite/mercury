@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Button, ButtonGroup} from "./button/";
 import {Input, ButtonInput} from "./input/";
 import {DoubleNumber} from "./double";
+import Spacer from "./spacer/spacer";
 
 const Enum = props => (
 	<ButtonGroup>
@@ -74,4 +75,5 @@ export {
 	ButtonInput as Number,
 	MultipleChoice,
 	DoubleNumber,
+	Spacer,
 };
