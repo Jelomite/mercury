@@ -1,30 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, {useState, useEffect} from "react";
 import Container from "./pages/container";
 import SignPage from "./pages/sign-up";
 import {BrowserRouter} from "react-router-dom";
+import {firebaseApp, signInWithGoogle, signOut} from "./firebase";
 
-// firebase imports
-import withFirebaseAuth from "react-with-firebase-auth";
-import {providers, firebaseApp} from "./firebase";
+// create an auth
+const useAuth = auth => {
+	const [user, setUser] = useState(null);
 
-const firebaseAppAuth = firebaseApp.auth();
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged(state => {
+			setUser(state);
+		});
+		return unsubscribe;
+	}, [auth]);
+	return user;
+};
+
 // if the user isn't signed in, we give him the sign-in page,
 // otherwise we prompt him to the authorized content
-const App = props => (
-	<BrowserRouter>
-		{props.user ?
-			<Container {...props}/> :
-			<SignPage {...props} />
-		}
-	</BrowserRouter>
-);
-
-App.propTypes = {
-	user: PropTypes.object,
+export const App = () => {
+	const user = useAuth(firebaseApp.auth());
+	return (
+		<BrowserRouter>
+			{user ?
+				<Container user={user} signOut={signOut}/> :
+				<SignPage signInWithGoogle={signInWithGoogle}/>
+			}
+		</BrowserRouter>
+	);
 };
-// withFirebaseAuth is an HOC which passes the App new props: user, signInWithGoogle, signOut.
-export default withFirebaseAuth({
-	providers,
-	firebaseAppAuth,
-})(App);
+
+export default App;
