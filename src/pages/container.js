@@ -14,6 +14,7 @@ import {SettingsContext, provideSettings} from "../contexts/settings";
 // the container manages all of the states. anything above that is outside of the global state scope.
 const Container = props => {
 	const {store, dispatch} = useContext(SettingsContext);
+	// set auth properties to settings store
 	useEffect(() => {
 		dispatch({type: "SET_AUTH", data: {
 			user: props.user,
@@ -22,10 +23,12 @@ const Container = props => {
 		console.log(store.auth);
 	}, [store.auth.user]);
 
+	//set history object to settings store
 	useEffect(() => {
 		dispatch({type: "SET_HISTORY", data: props.history});
 	}, []);
 
+	// set the theme
 	useEffect(() => {
 		// here we check if the localStorage has a defined theme.
 		const localTheme = localStorage.getItem("darkMode");
