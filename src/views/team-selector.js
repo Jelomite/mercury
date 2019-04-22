@@ -52,6 +52,7 @@ const Table = props => {
 				setUsed({});
 			}
 		});
+		return () => {db.ref().child("scouting/" + props.match).off();};
 	}, []);
 
 	const handleTeamSelect = team => {
