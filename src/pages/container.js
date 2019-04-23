@@ -1,10 +1,11 @@
 import React, {useContext, useEffect} from "react";
 import PropTypes from "prop-types";
-import {Switch, Route, withRouter} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
 import Settings from "../views/settings/settings";
 import ScoutingForm from "./authorized-content/scouting-form";
 import HomePage from "./authorized-content/home-page";
+import MatchList from "./authorized-content/match-list";
 import {provideComponent} from "../contexts/form";
 import {provideMatch} from "../contexts/match";
 import {SettingsContext, provideSettings} from "../contexts/settings";
@@ -53,8 +54,9 @@ const Container = props => {
 		<>
 			<Settings />
 			<Switch>
-				<Route path="/scouting/:matchID" component={ScoutingForm} />
 				<Route exact path="/" component={HomePage} />
+				<Route path="/scouting/:matchID" component={ScoutingForm} />
+				<Route path="/scouting" component={MatchList} />
 			</Switch>
 		</>
 	);
@@ -66,4 +68,4 @@ Container.propTypes = {
 	history: PropTypes.object,
 };
 // here we provide all of the states. in future the pipeline operator will come in handy.
-export default provideSettings(provideComponent(provideMatch(withRouter(Container))));
+export default provideSettings(provideComponent(provideMatch(Container)));
