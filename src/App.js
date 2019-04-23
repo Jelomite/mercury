@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import PropTypes from "prop-types";
 import Container from "./pages/container";
 import SignPage from "./pages/sign-up";
 import {BrowserRouter, withRouter} from "react-router-dom";
