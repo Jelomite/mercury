@@ -18,7 +18,10 @@ const SignPage = props => {
 				<img className={style.logo} src={screw} alt="Mercury's logo" />
 				<h4 className={style.strapline}>welcome to:</h4>
 				<h1 className={style.title}>Mercury</h1>
-				<Button onClick={props.signInWithGoogle}>Sign in with Google</Button>
+				<Button onClick={() => {
+					props.history.push("/");
+					props.signInWithGoogle();
+				}}>Sign in with Google</Button>
 			</div>
 		</div>
 	);
@@ -26,6 +29,7 @@ const SignPage = props => {
 
 SignPage.propTypes = {
 	signInWithGoogle: PropTypes.func,
+	history: PropTypes.object,
 };
 
 export default SignPage;
