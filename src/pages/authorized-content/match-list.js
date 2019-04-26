@@ -11,13 +11,14 @@ const MatchList = () => {
 		let cancel = false;
 		// get the next match in event
 		const getNextMatch = async (event, callback) => {
-			const matches = await TBA.fetchMatchesForEvent(event);
-			const lastMatch = matches[0]; // TODO: implement this...
 			if (!cancel) {
-				callback(lastMatch);
+				const matches = await TBA.fetchMatchesForEvent(event);
+				const sorted = matches.sort((a, b) => a.time - b.time);
+				const upcoming = sorted.filter(match => !match.actual_time)[0];
+				callback(upcoming.key);
 			}
 		};
-		getNextMatch(store.event, lastMatch => setMatch(lastMatch));
+		getNextMatch(store.event, upcoming => setMatch(upcoming));
 		return () => {cancel = true;};
 	}, []);
 
