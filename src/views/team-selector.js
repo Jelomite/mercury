@@ -16,7 +16,7 @@ const parseMatch = matchKey => {
 			return "Semi Final";
 		case "f":
 			return "Final";
-		case "q":
+		case "qm":
 			return "Qualifier";
 		case "m":
 			return "Match";
@@ -25,7 +25,7 @@ const parseMatch = matchKey => {
 		}
 	});
 	const numbers = matchKey.split(/[a-z]+/).slice(1, 3);
-	const connected = parsedTokens.slice(0, 2).map((word, i) => `${word} ${numbers[i]} `);
+	const connected = parsedTokens.filter(word => word).map((word, i) => `${word} ${numbers[i]} `);
 	return connected;
 };
 
