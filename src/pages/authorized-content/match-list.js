@@ -6,6 +6,7 @@ import {SettingsContext} from "../../contexts/settings";
 
 const MatchList = () => {
 	const [match, setMatch] = useState("");
+	const [matchList, setMatchList] = useState([]);
 	const {store} = useContext(SettingsContext);
 	useEffect( () => {
 		let cancel = false;
@@ -13,6 +14,7 @@ const MatchList = () => {
 		const getNextMatch = async (event, callback) => {
 			if (!cancel) {
 				const matches = await TBA.fetchMatchesForEvent(event);
+				setMatchList(matches.map(match => match.key));
 				const sorted = matches.sort((a, b) => a.time - b.time);
 				const upcoming = sorted.filter(match => !match.actual_time)[0];
 				callback(upcoming.key);
@@ -29,7 +31,7 @@ const MatchList = () => {
 			<Input value={match} onChange={e => setMatch(e.target.value)}/>
 			<Spacer />
 			<Link to={"scouting/" + match}>
-				<Button>Scout!</Button>
+				<Button disabled={!matchList.includes(match)}>Scout!</Button>
 			</Link>
 		</div>
 	);
