@@ -17,7 +17,7 @@ const MatchList = () => {
 				setMatchList(matches.map(match => match.key));
 				const sorted = matches.sort((a, b) => a.time - b.time);
 				const upcoming = sorted.filter(match => !match.actual_time)[0];
-				callback(upcoming.key);
+				callback(upcoming ? upcoming.key : event + "_");
 			}
 		};
 		getNextMatch(store.event, upcoming => setMatch(upcoming));
