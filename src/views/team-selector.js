@@ -71,7 +71,7 @@ const Table = props => {
 						<React.Fragment>
 							{
 								store.blue.map((team, index) => (
-									<Component.ButtonGroup key={index}>
+									<Component.ButtonGroup key={team}>
 										<Component.Button
 											tinted="true"
 											color={Object.keys(used).includes(team) ? "" : "blue"}

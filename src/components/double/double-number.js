@@ -7,8 +7,8 @@ const Double = props => (
 	// this component creates a split screen ButtonInput with a seperator in the middle.
 	<div className={style.double}>
 		<section className={style.left}>
-			{props.left.map((question, index) => (
-				<React.Fragment key={index}>
+			{props.left.map(question => (
+				<React.Fragment key={question.name}>
 					<h5>{question.name}</h5>
 					<ButtonInput
 						value={question.value}
@@ -19,8 +19,8 @@ const Double = props => (
 		</section>
 		<section className={style.seperator}></section>
 		<section className={style.right}>
-			{props.right.map((question, index) => (
-				<React.Fragment key={index}>
+			{props.right.map(question => (
+				<React.Fragment key={question.name}>
 					<h5>{question.name}</h5>
 					<ButtonInput
 						value={question.value}
