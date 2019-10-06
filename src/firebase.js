@@ -11,6 +11,8 @@ const config = {
   messagingSenderId: process.env.MESSAGINGSENDERID,
 };
 
+console.log(config);
+
 // all of the firebase apps we need:
 export const firebaseApp = firebase.initializeApp(config);
 export const db = firebaseApp.database();
