@@ -6,6 +6,7 @@ import Settings from "../views/settings/settings";
 import ScoutingForm from "./authorized-content/scouting-form";
 import HomePage from "./authorized-content/home-page";
 import MatchList from "./authorized-content/match-list";
+import TeamOverview from "./authorized-content/team-overview";
 import {provideComponent} from "../contexts/form";
 import {provideMatch} from "../contexts/match";
 import {SettingsContext, provideSettings} from "../contexts/settings";
@@ -57,6 +58,7 @@ const Container = props => {
 				<Route exact path="/" component={HomePage} />
 				<Route path="/scouting/:matchID" component={ScoutingForm} />
 				<Route path="/scouting" component={MatchList} />
+				<Route path="/teams/:teamID" component={TeamOverview} />
 			</Switch>
 		</>
 	);
