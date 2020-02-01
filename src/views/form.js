@@ -147,6 +147,9 @@ const Form = () => {
 				settingStore.history.push("/");
 			}
 		});
+
+		// upload individual game data to team history
+		db.ref().child("teams/" + matchStore.teamID).push().set({matchID: matchStore.matchKey, ...flatData});
 	};
 
 	return (
