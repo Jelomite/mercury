@@ -5,7 +5,7 @@ export const [SettingsContext, provideSettings] = generateContext({
 		darkMode: false,
 		auth: {},
 		history: {},
-		event: "",
+		event: "2019tes",
 	},
 	reducer: (state, action) => {
 		switch(action.type) {
