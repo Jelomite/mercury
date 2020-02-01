@@ -9,7 +9,7 @@ const generateContext = ({initialState = {}, reducer}) => {
 	const Context = createContext(initialState);
 	// provideComponent is a HOC, it allows us to subscribe to the context and access it anywhere inside of our app.
 	const provideComponent = Component => {
-		const wrapper = props => {
+		const Wrapper = props => {
 			const [store, dispatch] = useReducer(reducer, initialState);
 			return (
 				<Context.Provider value={{store, dispatch}}>
@@ -17,9 +17,9 @@ const generateContext = ({initialState = {}, reducer}) => {
 				</Context.Provider>
 			);
 		};
-		return wrapper;
+		return Wrapper;
 	};
-	
+
 	return [Context, provideComponent];
 };
 

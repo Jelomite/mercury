@@ -22,7 +22,7 @@ const MatchList = () => {
 		};
 		getNextMatch(store.event, upcoming => setMatch(upcoming));
 		return () => {cancel = true;};
-	}, []);
+	}, [store.event]);
 
 	return (
 		<div>
