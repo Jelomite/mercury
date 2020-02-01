@@ -3,12 +3,12 @@ import "firebase/auth";
 import "firebase/database";
 
 const config = {
-  apiKey: process.env.APIKEY,
-  authDomain: process.env.AUTHDOMAIN,
-  databaseURL: process.env.DATABASEURL,
-  projectId: process.env.PROJECTID,
-  storageBucket: process.env.STORAGEBUCKET,
-  messagingSenderId: process.env.MESSAGINGSENDERID,
+	apiKey: process.env.REACT_APP_APIKEY,
+	authDomain: process.env.REACT_APP_AUTHDOMAIN,
+	databaseURL: process.env.REACT_APP_DATABASEURL,
+	projectId: process.env.REACT_APP_PROJECTID,
+	storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+	messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
 };
 
 console.log(config);
