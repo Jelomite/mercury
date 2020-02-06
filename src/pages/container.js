@@ -49,6 +49,7 @@ const Container = props => {
 			document.body.classList.add("dark") :
 			document.body.classList.remove("dark");
 	}, [store.darkMode, dispatch]); // this useEffect will only run if the darkMode has changed.
+
 	// the container will return Settings and a page based on the route.
 	return (
 		<>

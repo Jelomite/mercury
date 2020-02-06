@@ -43,6 +43,7 @@ const Table = props => {
 			dispatch({type: "SET_MATCH", value: parseMatch(props.match.split("_")[1])});
 		});
 	}, [props.match, dispatch]);
+  
 	// set used state when db changes
 	useEffect(() => {
 		db.ref().child("scouting/" + props.match).on("value", snap => {
