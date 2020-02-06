@@ -1,21 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Button} from "../button";
-import Input from "./input";
-import "./input-with-buttons.css";
+import {Input} from "semantic-ui-react";
 
 const ButtonInput = props => {
 	return (
-		<div className="ui btn-input">
+		<Input fluid disabled type={props.type} value={props.value}>
 			<Button
+				attached="left"
 				onClick={props.onClick.left}>
 				{props.left}
 			</Button>
-			<Input disabled type={props.type} value={props.value}/>
-			<Button	onClick={props.onClick.right}>
+			<input style={{
+				"textAlign": "center",
+			}}/>
+			<Button
+				attached="right"
+				onClick={props.onClick.right}>
 				{props.right}
 			</Button>
-		</div>
+		</Input>
 	);
 };
 

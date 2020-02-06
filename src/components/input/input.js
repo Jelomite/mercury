@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./input.css";
+import {Input as SemanticInput} from "semantic-ui-react";
 
 const Input = props => (
-	<input
-		className="ui input"
+	<SemanticInput
+		fluid
 		placeholder={props.placeholder}
 		type={props.type}
 		style={props.type === "number" ?
 			{
-				"textAalign": "center",
+				"textAlign": "center",
 			} :
 			{}
 		}
