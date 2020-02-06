@@ -9,7 +9,7 @@ const Double = props => (
 		<Grid.Column>
 			{props.left.map(question => (
 				<Grid.Row key={question.name}>
-					<Header as="h5">{question.name}</Header>
+					<Header as="h5" textAlign="center">{question.name}</Header>
 					<ButtonInput
 						value={question.value}
 						onClick={question.onClick}
@@ -21,7 +21,7 @@ const Double = props => (
 		<Grid.Column>
 			{props.right.map(question => (
 				<Grid.Row key={question.name}>
-					<Header as="h5">{question.name}</Header>
+					<Header as="h5" textAlign="center">{question.name}</Header>
 					<ButtonInput
 						value={question.value}
 						onClick={question.onClick}
