@@ -10,7 +10,7 @@ const TeamOverview = props => {
 			setTeamData(snap.val());
 		});
 
-	}, []);
+	}, [props.match.params.teamID]);
 
 	return (
 		<div>

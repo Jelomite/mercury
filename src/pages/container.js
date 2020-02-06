@@ -22,13 +22,12 @@ const Container = props => {
 			user: props.user,
 			signOut: props.signOut,
 		}});
-		console.log(store.auth);
-	}, [store.auth.user]);
+	}, [dispatch, props.signOut, props.user]);
 
 	//set history object to settings store
 	useEffect(() => {
 		dispatch({type: "SET_HISTORY", data: props.history});
-	}, []);
+	}, [dispatch, props.history]);
 
 	// set the theme
 	useEffect(() => {
@@ -49,7 +48,7 @@ const Container = props => {
 		store.darkMode ?
 			document.body.classList.add("dark") :
 			document.body.classList.remove("dark");
-	}, [store.darkMode]); // this useEffect will only run if the darkMode has changed.
+	}, [store.darkMode, dispatch]); // this useEffect will only run if the darkMode has changed.
 	// the container will return Settings and a page based on the route.
 	return (
 		<>
