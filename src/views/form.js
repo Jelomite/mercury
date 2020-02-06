@@ -6,6 +6,7 @@ import {SettingsContext} from "../contexts/settings";
 import {compile} from "../validation-parser";
 import {db} from "../firebase";
 import {Header, Divider} from "semantic-ui-react";
+import style from "./form.module.css";
 
 // custom useEffect for form validation.
 const useValidation = store => {
@@ -153,14 +154,12 @@ const Form = () => {
 	};
 
 	return (
-		<div style={{
-			"marginTop": "1em",
-		}}>
+		<div className={style.form}>
 			{Object.entries(store).map((section, sectionIndex) => (
 				<React.Fragment key={sectionIndex}>
-					<section>
+					<section className={style.section}>
 						<Header as="h2" textAlign="center">{section[0]}</Header>
-						<section>
+						<section className={style.inner}>
 							{section[1].map((question, questionIndex) => (
 								<div key={questionIndex}>
 									<Header
@@ -181,10 +180,10 @@ const Form = () => {
 				</React.Fragment>
 
 			))}
-			<section>
+			<section className={style.section}>
 				<Header as="h2" textAlign="center">Submission</Header>
 				<Header as="h3" textAlign="center">fix the following values to submit form:</Header>
-				<section>
+				<section className={style.inner}>
 					<pre>
 						{valid.map(el => el.test || `${el.section} - ${el.name}\n`)}
 					</pre>

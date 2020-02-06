@@ -1,0 +1,39 @@
+@media (max-width: 600px){
+	.form {
+		display: flex;
+		overflow-x: scroll;
+		scroll-snap-type: x mandatory;
+		scroll-snap-destination: 50% 50%;
+	}
+
+	.section {
+		overflow-y: hidden;
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
+		min-width: 100%;
+		margin: 0;
+	}
+
+	.inner {
+		max-height: 65vh;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+
+	.validation {
+		min-height: 29em;
+		width: 100vw;
+	}
+
+	body {
+		overflow: hidden;
+	}
+
+	::-webkit-scrollbar{
+		display: none;
+	}
+}
+
+.section {
+	padding: 0 0 10% 0;
+}
