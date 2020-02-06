@@ -5,6 +5,7 @@ import {Input as SemanticInput} from "semantic-ui-react";
 const Input = props => (
 	<SemanticInput
 		fluid
+		size="large"
 		placeholder={props.placeholder}
 		type={props.type}
 		style={props.type === "number" ?
