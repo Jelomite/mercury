@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cx from "classnames";
-import "./button.css";
+import {Button as SemanticButton} from "semantic-ui-react";
 
-const Button = props => (
-	<button
-		className={cx("btn ui",{"active": props.active, "tinted": props.tinted}, props.color)}
-		{...props}>
+const Button = ({color, active, ...props}) => (
+	<SemanticButton
+		basic={!active}
+		color={color ? color : "black"}
+		active={active === "true"}
+		{...props}
+	>
 		{props.children}
-	</button>
+	</SemanticButton>
 );
 
 Button.propTypes = {

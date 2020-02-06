@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./button-group.css";
+import {Button} from "semantic-ui-react";
 
 const Group = props => (
-	<div
-		className="ui btn-group">
+	<Button.Group fluid widths={props.children.length}>
 		{	// set the color prop for all children if props.color is present
 			props.color ? (
 				props.children.map(child => React.cloneElement(child, {color: props.color}))
 			) : (
 				props.children
 			)}
-	</div>
+	</Button.Group>
 );
 
 Group.propTypes = {
