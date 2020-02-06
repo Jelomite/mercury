@@ -57,7 +57,7 @@ MultipleChoice.propTypes = {
 		PropTypes.string,
 	),
 	active: PropTypes.arrayOf(
-		PropTypes.bool
+		PropTypes.bool,
 	),
 	onClick: PropTypes.func,
 	color: PropTypes.string,
