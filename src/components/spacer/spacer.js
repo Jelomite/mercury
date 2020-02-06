@@ -1,8 +1,6 @@
 import React from "react";
-import style from "./spacer.module.css";
+import {Divider} from "semantic-ui-react";
 
-const Spacer = () => (
-	<div className={style.spacer} />
-);
+const Spacer = () => <Divider />;
 
 export default Spacer;
