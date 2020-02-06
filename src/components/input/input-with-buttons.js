@@ -7,6 +7,7 @@ const ButtonInput = props => {
 	return (
 		<Input fluid disabled type={props.type} value={props.value}>
 			<Button
+				fluid={false}
 				attached="left"
 				onClick={props.onClick.left}>
 				{props.left}
@@ -15,6 +16,7 @@ const ButtonInput = props => {
 				"textAlign": "center",
 			}}/>
 			<Button
+				fluid={false}
 				attached="right"
 				onClick={props.onClick.right}>
 				{props.right}

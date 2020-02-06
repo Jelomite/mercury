@@ -6,7 +6,10 @@ const Group = props => (
 	<Button.Group fluid widths={props.children.length}>
 		{	// set the color prop for all children if props.color is present
 			props.color ? (
-				props.children.map(child => React.cloneElement(child, {color: props.color}))
+				props.children.map(child => React.cloneElement(child, {
+					color: props.color,
+					fluid: false,
+				}))
 			) : (
 				props.children
 			)}
