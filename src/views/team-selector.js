@@ -42,7 +42,8 @@ const Table = props => {
 			dispatch({type: "SET_RED", value: r.alliances.red.team_keys.map(team => team.replace("frc", ""))});
 			dispatch({type: "SET_MATCH", value: parseMatch(props.match.split("_")[1])});
 		});
-	}, [dispatch, props.match]);
+	}, [props.match, dispatch]);
+  
 	// set used state when db changes
 	useEffect(() => {
 		db.ref().child("scouting/" + props.match).on("value", snap => {
