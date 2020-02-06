@@ -1,35 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {ButtonInput} from "../input";
-import style from "./double-number.module.css";
+import {Grid, Header} from "semantic-ui-react";
 
 const Double = props => (
 	// this component creates a split screen ButtonInput with a seperator in the middle.
-	<div className={style.double}>
-		<section className={style.left}>
+	<Grid columns={2} divided>
+		<Grid.Column>
 			{props.left.map(question => (
-				<React.Fragment key={question.name}>
-					<h5>{question.name}</h5>
+				<Grid.Row key={question.name}>
+					<Header as="h5">{question.name}</Header>
 					<ButtonInput
 						value={question.value}
 						onClick={question.onClick}
 					/>
-				</React.Fragment>
+				</Grid.Row>
 			))}
-		</section>
-		<section className={style.seperator}></section>
-		<section className={style.right}>
+		</Grid.Column>
+
+		<Grid.Column>
 			{props.right.map(question => (
-				<React.Fragment key={question.name}>
-					<h5>{question.name}</h5>
+				<Grid.Row key={question.name}>
+					<Header as="h5">{question.name}</Header>
 					<ButtonInput
 						value={question.value}
 						onClick={question.onClick}
 					/>
-				</React.Fragment>
+				</Grid.Row>
 			))}
-		</section>
-	</div>
+		</Grid.Column>
+	</Grid>
 );
 
 Double.propTypes = {
