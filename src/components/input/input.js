@@ -9,7 +9,7 @@ const Input = props => (
 		type={props.type}
 		style={props.type === "number" ?
 			{
-				"text-align": "center",
+				"textAalign": "center",
 			} :
 			{}
 		}
