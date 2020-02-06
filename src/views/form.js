@@ -153,7 +153,9 @@ const Form = () => {
 	};
 
 	return (
-		<div>
+		<div style={{
+			"marginTop": "1em",
+		}}>
 			{Object.entries(store).map((section, sectionIndex) => (
 				<React.Fragment key={sectionIndex}>
 					<section>
@@ -161,7 +163,15 @@ const Form = () => {
 						<section>
 							{section[1].map((question, questionIndex) => (
 								<div key={questionIndex}>
-									<Header as="h4" textAlign="center">{question.name} {question.type === "multiple" ? "(M)" : ""}</Header>
+									<Header
+										as="h4"
+										textAlign="center"
+										style={{
+											"marginTop": "1em",
+											"marginBottom": "0.2em",
+										}}>
+										{question.name} {question.type === "multiple" ? "(M)" : ""}
+									</Header>
 									{questionGen(question, section[0], questionIndex)}
 								</div>
 							))}

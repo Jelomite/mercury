@@ -7,7 +7,9 @@ import {Header} from "semantic-ui-react";
 const SettingsPage = () => {
 	const {store, dispatch} = useContext(SettingsContext);
 	return (
-		<>
+		<div style={{
+			"height": "100vh",
+		}}>
 			<Header as="h1" textAlign="center">Preferences</Header>
 			<Header as="h4" textAlign="center">Theme</Header>
 			<Enum
@@ -19,7 +21,7 @@ const SettingsPage = () => {
 				}}/>
 			<Spacer />
 			<Button onClick={store.auth.signOut}>Sign Out</Button>
-		</>
+		</div>
 	);
 };
 
