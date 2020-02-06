@@ -3,6 +3,7 @@ import {Input, Button, Spacer} from "../../components";
 import * as TBA from "../../TBA";
 import {Link} from "react-router-dom";
 import {SettingsContext} from "../../contexts/settings";
+import {Header} from "semantic-ui-react";
 
 const MatchList = () => {
 	const [match, setMatch] = useState("");
@@ -26,8 +27,8 @@ const MatchList = () => {
 
 	return (
 		<div>
-			<h1>Scouting</h1>
-			<h4>choose match</h4>
+			<Header as="h1">Scouting</Header>
+			<Header as="h4">choose match</Header>
 			<Input value={match} onChange={e => setMatch(e.target.value)}/>
 			<Spacer />
 			<Link to={"scouting/" + match}>

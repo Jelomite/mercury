@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import * as Component from "../components";
 import {MatchContext} from "../contexts/match";
 import {SettingsContext} from "../contexts/settings";
-import style from "./team-selector.module.css";
 import * as TBA from "../TBA";
 import {db} from "../firebase";
+import {Header, Container} from "semantic-ui-react";
 
 // parse the matchKey to readable format. this will later be stored in the store.match
 const parseMatch = matchKey => {
@@ -43,7 +43,7 @@ const Table = props => {
 			dispatch({type: "SET_MATCH", value: parseMatch(props.match.split("_")[1])});
 		});
 	}, [props.match, dispatch]);
-  
+
 	// set used state when db changes
 	useEffect(() => {
 		db.ref().child("scouting/" + props.match).on("value", snap => {
@@ -62,12 +62,12 @@ const Table = props => {
 
 	return (
 		<React.Fragment>
-			<h1 className={style.match}>{store.match}</h1>
-			<div className={style.container}>
+			<Header as="h1" textAlign="center">{store.match}</Header>
+			<Container>
 				{
 					// display the selection component. if the client chose a team, display its ID instead.
 					store.teamID !== -1 ? ( // -1 is the defualt value of the ID.
-						<h4 className={style.team}>Team #{store.teamID}</h4>
+						<Header as="h4" textAlign="center">Team #{store.teamID}</Header>
 					) : (
 						<React.Fragment>
 							{
@@ -109,7 +109,7 @@ const Table = props => {
 						</React.Fragment>
 					)
 				}
-			</div>
+			</Container>
 		</React.Fragment>
 	);
 };

@@ -1,14 +1,15 @@
 import React, {useContext} from "react";
 import {Button, Enum, Spacer} from "../../components";
 import {SettingsContext} from "../../contexts/settings";
+import {Header} from "semantic-ui-react";
 
 // in the settings page, this is what it contains.
 const SettingsPage = () => {
 	const {store, dispatch} = useContext(SettingsContext);
 	return (
 		<>
-			<h1>Preferences</h1>
-			<h4>Theme</h4>
+			<Header as="h1" textAlign="center">Preferences</Header>
+			<Header as="h4" textAlign="center">Theme</Header>
 			<Enum
 				options={["Light", "Dark"]}
 				active={store.darkMode ? 1 : 0}

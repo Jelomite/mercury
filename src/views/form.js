@@ -3,9 +3,9 @@ import * as Question from "../components";
 import {FormContext} from "../contexts/form";
 import {MatchContext} from "../contexts/match";
 import {SettingsContext} from "../contexts/settings";
-import style from "./form.module.css";
 import {compile} from "../validation-parser";
 import {db} from "../firebase";
+import {Header, Divider} from "semantic-ui-react";
 
 // custom useEffect for form validation.
 const useValidation = store => {
@@ -153,29 +153,29 @@ const Form = () => {
 	};
 
 	return (
-		<div className={style.form}>
+		<div>
 			{Object.entries(store).map((section, sectionIndex) => (
 				<React.Fragment key={sectionIndex}>
-					<section className={style.section}>
-						<h2>{section[0]}</h2>
-						<section className={style.inner}>
+					<section>
+						<Header as="h2" textAlign="center">{section[0]}</Header>
+						<section>
 							{section[1].map((question, questionIndex) => (
-								<div className={style.question} key={questionIndex}>
-									<h4>{question.name} {question.type === "multiple" ? <span className={style.gray}>(M)</span> : ""}</h4>
+								<div key={questionIndex}>
+									<Header as="h4" textAlign="center">{question.name} {question.type === "multiple" ? "(M)" : ""}</Header>
 									{questionGen(question, section[0], questionIndex)}
 								</div>
 							))}
 						</section>
 					</section>
-					<hr className={style.divider}/>
+					<Divider />
 				</React.Fragment>
 
 			))}
-			<section className={style.section} id="validation">
-				<h2>Submission</h2>
-				<h3>fix the following values to submit form:</h3>
-				<section className={style.inner}>
-					<pre className={style.validation}>
+			<section>
+				<Header as="h2" textAlign="center">Submission</Header>
+				<Header as="h3" textAlign="center">fix the following values to submit form:</Header>
+				<section>
+					<pre>
 						{valid.map(el => el.test || `${el.section} - ${el.name}\n`)}
 					</pre>
 					<Question.Button disabled={valid.filter(el => !el.test).length !== 0} onClick={handleSubmit}>

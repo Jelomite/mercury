@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {Button} from "../components";
-import screw from "../img/screw.svg";
-import style from "./sign-up.module.css";
+import logo from "../img/logo.png";
+import {Header, Container, Image} from "semantic-ui-react";
 
 const SignPage = props => {
 	// set the theme to dark if localStorage has it defined.
@@ -13,17 +13,16 @@ const SignPage = props => {
 	}, []);
 
 	return (
-		<div className={style.container}>
-			<div className={style.content}>
-				<img className={style.logo} src={screw} alt="Mercury's logo" />
-				<h4 className={style.strapline}>welcome to:</h4>
-				<h1 className={style.title}>Mercury</h1>
-				<Button onClick={() => {
-					props.history.push("/");
-					props.signInWithGoogle();
-				}}>Sign in with Google</Button>
-			</div>
-		</div>
+		<Container textAlign="center" style={{
+			"marginTop": "15%",
+		}}>
+			<Header as="h2">welcome to:</Header>
+			<Image src={logo} alt="Mercury's logo" size="large" centered/>
+			<Button onClick={() => {
+				props.history.push("/");
+				props.signInWithGoogle();
+			}}>Sign in with Google</Button>
+		</Container>
 	);
 };
 

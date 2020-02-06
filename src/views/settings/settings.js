@@ -1,16 +1,16 @@
 import React, {useState} from "react";
-import style from "./settings.module.css";
 import gearIcon from "../../img/settings.svg";
 import closeIcon from "../../img/close.svg";
 import Content from "./content";
+import {Image} from "semantic-ui-react";
 
 const Gear = props => (
-	<img className={style.icon} src={gearIcon} alt="settings" {...props}/>
+	<Image size="mini" src={gearIcon} alt="settings" {...props}/>
 );
 
 const Modal = props => (
-	<div id="root" className={style.modal}>
-		<img className={style.icon} src={closeIcon} alt="close" {...props}/>
+	<div>
+		<Image size="mini" src={closeIcon} alt="close" {...props}/>
 		<Content />
 	</div>
 );
