@@ -10,10 +10,10 @@ const HomePage = () => {
 	const {store} = React.useContext(SettingsContext);
 	return (
 		<>
-		<Header as="h1">Hello, {store.auth.user ? store.auth.user.displayName : ""}</Header>
-		<Link to="scouting">
-			<Button> Start Scouting </Button>
-		</Link>
+			<Header as="h1" textAlign="center">Hello, {store.auth.user ? store.auth.user.displayName : ""}</Header>
+			<Link to="scouting">
+				<Button> Start Scouting </Button>
+			</Link>
 		</>
 	);
 };

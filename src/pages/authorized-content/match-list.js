@@ -27,8 +27,8 @@ const MatchList = () => {
 
 	return (
 		<div>
-			<Header as="h1">Scouting</Header>
-			<Header as="h4">choose match</Header>
+			<Header as="h1" textAlign="center">Scouting</Header>
+			<Header as="h4" textAlign="center">choose match</Header>
 			<Input value={match} onChange={e => setMatch(e.target.value)}/>
 			<Spacer />
 			<Link to={"scouting/" + match}>
