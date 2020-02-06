@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Button as SemanticButton} from "semantic-ui-react";
 
-const Button = ({color, active, ...props}) => (
+const Button = ({color, active, tinted = false, ...props}) => (
 	<SemanticButton
 		fluid
 		basic={!active}
-		color={color ? color : "black"}
+		color={color && (active || tinted) ? color : "black"}
 		active={active === "true"}
 		{...props}
 	>

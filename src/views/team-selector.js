@@ -74,7 +74,7 @@ const Table = props => {
 								store.blue.map((team, index) => (
 									<Component.ButtonGroup key={team}>
 										<Component.Button
-											tinted="true"
+											tinted
 											color={Object.keys(used).includes(team) ? "" : "blue"}
 											disabled={Object.keys(used).includes(team) && used[team] !== settingStore.auth.user.displayName}
 											onClick={() => {
@@ -89,7 +89,7 @@ const Table = props => {
 											{`${team} ${used[team] ? `(${used[team]})` : ""}`}
 										</Component.Button>
 										<Component.Button
-											tinted="true"
+											tinted
 											color={Object.keys(used).includes(store.red[index]) ? "" : "red"}
 											disabled={Object.keys(used).includes(store.red[index]) && used[store.red[index]] !== settingStore.auth.user.displayName}
 											onClick={() => {
