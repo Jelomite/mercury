@@ -37,13 +37,14 @@ const Table = props => {
 	useEffect(() => {
 		TBA.fetchSingleMatchFromEvent(props.match).then(r => {
 			// setting initial state of MatchContext.
+			dispatch({type: "SET_TEAMID",	value: -1}); // reset team id value
 			dispatch({type: "SET_MATCHKEY", value: props.match});
 			dispatch({type: "SET_BLUE", value: r.alliances.blue.team_keys.map(team => team.replace("frc", ""))});
 			dispatch({type: "SET_RED", value: r.alliances.red.team_keys.map(team => team.replace("frc", ""))});
 			dispatch({type: "SET_MATCH", value: parseMatch(props.match.split("_")[1])});
 		});
 	}, [props.match, dispatch]);
-  
+
 	// set used state when db changes
 	useEffect(() => {
 		db.ref().child("scouting/" + props.match).on("value", snap => {
