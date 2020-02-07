@@ -31,6 +31,10 @@ const Form = () => {
 	const {store: settingStore} = useContext(SettingsContext);
 	const [valid] = useValidation(store);
 
+	useEffect(() => {
+		dispatch({type: "RESET"});
+	}, [dispatch]);
+
 	// this function generates a serve-ready component with everything in place.
 	const questionGen = (question, section, index) => {
 		const color = matchStore.alliance;

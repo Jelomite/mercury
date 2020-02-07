@@ -11,7 +11,7 @@ export const [FormContext, provideComponent] = generateContext({
 		// the action object has 3 attributes - type, path, value.
 		// the type can be "regular" or "nested" - it will determine the way the path is being deconstructed.
 		// the path is there to specify which question inside of our huge state needs to be changed.
-		// and the value overwrites the current value of the state.		
+		// and the value overwrites the current value of the state.
 		if (action.type === "regular") {
 			const [index, section] = action.path.split("#");
 			state[section][index].value = action.value;
@@ -20,7 +20,8 @@ export const [FormContext, provideComponent] = generateContext({
 			const [index, section, side, innerIndex] = action.path.split("#");
 			state[section][index].options[side][innerIndex].value = action.value;
 			return {...state};
+		} else if (action.type === "RESET") {
+			return {...blueprint};
 		}
-
 	},
 });
