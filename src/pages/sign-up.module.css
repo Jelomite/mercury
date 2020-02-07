@@ -22,6 +22,7 @@
 .logo {
 	width: 90vw;
 	height: auto;
+	max-width: 600px;
 	filter: invert(var(--invert));
 	margin-bottom: 25vh;
 }
