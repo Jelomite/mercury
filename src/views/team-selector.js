@@ -12,6 +12,8 @@ const parseMatch = matchKey => {
 	const tokens = matchKey.split(/\d+/);
 	const parsedTokens = tokens.map(token => {
 		switch(token) {
+		case "qf":
+			return "Quarter Final";
 		case "sf":
 			return "Semi Final";
 		case "f":
