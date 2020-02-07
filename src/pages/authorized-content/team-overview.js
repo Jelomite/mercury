@@ -4,6 +4,8 @@ import {db} from "../../firebase";
 
 const TeamOverview = props => {
 	const [teamData, setTeamData] = useState([]);
+	const [parsedData, setParsedData] = useState({});
+	// fetch raw data about the team from the db
 	useEffect(() => {
 		db.ref().child("teams/" + props.match.params.teamID).once("value", snap => {
 			console.log(snap.val());
@@ -12,9 +14,18 @@ const TeamOverview = props => {
 
 	}, [props.match.params.teamID]);
 
+	// each time the data changes we parse it again
+	useEffect(() => {
+		const gamesPlayed = Object.entries(teamData).length;
+		const climbAmount = Object.values(teamData).reduce((acc, match) => {
+			return acc + match.endgame["Climbed?"];
+		}, 0);
+		setParsedData({gamesPlayed, climbAmount});
+	}, [teamData]);
+
 	return (
 		<div>
-			{JSON.stringify(teamData)}
+			{JSON.stringify(parsedData)}
 		</div>
 	);
 };
