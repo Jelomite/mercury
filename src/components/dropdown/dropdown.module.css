@@ -1,0 +1,13 @@
+@import "../../style.css";
+
+.select {
+	padding: 1em;
+	border-radius: 0.4em;
+	border: 1px solid var(--fg);
+	color: var(--fg);
+	background: var(--bg);
+	width: 100%;
+	display: flex;
+	box-sizing: border-box;
+	font-size: 1em;
+}
