@@ -20,8 +20,8 @@
 }
 
 .logo {
-	height: 35vh;
-	width: auto;
+	width: 90vw;
+	height: auto;
 	filter: invert(var(--invert));
 	margin-bottom: 25vh;
 }
