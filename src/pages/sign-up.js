@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {Button} from "../components";
-import screw from "../img/screw.svg";
+import logo from "../img/logo.png";
 import style from "./sign-up.module.css";
 
 const SignPage = props => {
@@ -15,9 +15,7 @@ const SignPage = props => {
 	return (
 		<div className={style.container}>
 			<div className={style.content}>
-				<img className={style.logo} src={screw} alt="Mercury's logo" />
-				<h4 className={style.strapline}>welcome to:</h4>
-				<h1 className={style.title}>Mercury</h1>
+				<img className={style.logo} src={logo} alt="Mercury's logo" />
 				<Button onClick={() => {
 					props.history.push("/");
 					props.signInWithGoogle();
