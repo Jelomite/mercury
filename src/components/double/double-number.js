@@ -41,7 +41,7 @@ Double.propTypes = {
 				right: PropTypes.func,
 				left: PropTypes.func,
 			}),
-		})
+		}),
 	),
 	left: PropTypes.arrayOf(
 		PropTypes.shape({
@@ -51,7 +51,7 @@ Double.propTypes = {
 				right: PropTypes.func,
 				left: PropTypes.func,
 			}),
-		})
+		}),
 	),
 };
 

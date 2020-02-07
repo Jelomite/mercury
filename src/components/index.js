@@ -4,6 +4,7 @@ import {Button, ButtonGroup} from "./button/";
 import {Input, ButtonInput} from "./input/";
 import {DoubleNumber} from "./double";
 import Spacer from "./spacer/spacer";
+import Dropdown from "./dropdown/dropdown";
 
 const Enum = props => (
 	<ButtonGroup>
@@ -76,4 +77,5 @@ export {
 	MultipleChoice,
 	DoubleNumber,
 	Spacer,
+	Dropdown,
 };
