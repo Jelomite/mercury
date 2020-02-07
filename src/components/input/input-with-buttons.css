@@ -6,6 +6,7 @@ div.ui.btn-input {
 
 div.ui.btn-input input.ui.input:not(:last-child) {
 	border-right: none;
+	max-width: 129px;
 }
 
 div.ui.btn-input button.ui.btn:not(:last-child) {
